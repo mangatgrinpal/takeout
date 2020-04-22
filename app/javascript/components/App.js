@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { 
 	BrowserRouter as Router,
 	Switch,
@@ -7,16 +9,39 @@ import {
 	Link
 } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Container from 'react-bootstrap/Container';
 
 const App = () => {
 	return (
 		<Router>
-			<Container>
-				<h1>Hello World!</h1>
-			</Container>
+			<nav>
+				<ul>
+					<li>
+						<Link to='/home'>
+							go HOME
+						</Link>
+					</li>
+					<li>
+						<Link to='/'>
+							go back
+						</Link>
+					</li>
+				</ul>
+			</nav>			
+			<Switch>
+				<Route exact path ='/'>
+					<Container>
+						<h1>Hola mundo</h1>
+					</Container>
+				</Route>
+				<Route path='/home'>
+					<Container>
+						<h1>Hello World!</h1>
+					</Container>
+				</Route>
+			</Switch>
+			
 		</Router>	
 	)
 }
