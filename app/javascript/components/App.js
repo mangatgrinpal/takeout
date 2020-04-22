@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// import '../../assets/stylesheets/application.scss';
+
 import { 
 	BrowserRouter as Router,
 	Switch,
