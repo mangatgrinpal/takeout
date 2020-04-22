@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   #IMPORTANT:
-  #this 'mathch' must be the last route in routes.rb
+  #this 'match' must be the last route in routes.rb
 
   match '*path', to: 'static_pages#index', via: :all, constraints: lambda {
   	|req| req.path.exclude? 'rails/active_storage'
