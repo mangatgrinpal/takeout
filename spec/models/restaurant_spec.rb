@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe Restaurant, type: :model do
 
 	subject { 
-		described_class.new(name: "Anything",
-												description: "Lorem Ipsum") 
+		described_class.new(
+      name: "Anything",
+			description: "Lorem Ipsum"
+    )
 	}
 
   it "is valid with valid attributes" do
