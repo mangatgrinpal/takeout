@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import Dashboard from './Dashboard';
 
 import { 
 	BrowserRouter as Router,
@@ -16,13 +17,13 @@ const App = () => {
 			<nav>
 				<ul>
 					<li>
-						<Link to='/home'>
-							go HOME
+						<Link to='/'>
+							home
 						</Link>
 					</li>
 					<li>
-						<Link to='/'>
-							go back
+						<Link to='/dashboard'>
+							go dashboard
 						</Link>
 					</li>
 				</ul>
@@ -30,13 +31,11 @@ const App = () => {
 			<Switch>
 				<Route exact path ='/'>
 					<Container>
-						<h1>Hola mundo</h1>
+						<h1>this is the home page.</h1>
 					</Container>
 				</Route>
-				<Route path='/home'>
-					<Container>
-						<h1>Hello World!</h1>
-					</Container>
+				<Route path='/dashboard'>
+					<Dashboard />
 				</Route>
 			</Switch>
 			
