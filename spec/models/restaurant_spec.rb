@@ -9,17 +9,21 @@ RSpec.describe Restaurant, type: :model do
     )
 	}
 
-  it "is valid with valid attributes" do
-  	expect(subject).to be_valid	
+  context "valid attributes" do
+  	it { expect(subject).to be_valid }
   end
 
-  it "is not valid without a name" do
-  	subject.name = nil
-  	expect(subject).to_not be_valid
+  context "without a name" do
+  	it { 
+      subject.name = nil
+    	expect(subject).to_not be_valid
+    }
   end
 
-  it "is not valid without a description" do
-  	subject.description = nil
-  	expect(subject).to_not be_valid
+  context "without a description" do
+    it {
+      subject.description = nil
+      expect(subject).to_not be_valid  
+    }
   end
 end

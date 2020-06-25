@@ -36,7 +36,7 @@ RSpec.describe Address, type: :model do
 	end
 
 	it "is not valid without a zip code" do
-		subject.zipe_code = nil
+		subject.zip_code = nil
 		expect(subject).to_not be_valid
 	end
 end
