@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react';
+import Home from './Home';
 import Dashboard from './Dashboard';
+import Orders from './Orders';
+import Menu from './Menu';
 
 import { 
 	BrowserRouter as Router,
@@ -18,7 +21,7 @@ const App = () => {
 				<ul>
 					<li>
 						<Link to='/'>
-							home
+							go home
 						</Link>
 					</li>
 					<li>
@@ -26,17 +29,22 @@ const App = () => {
 							go dashboard
 						</Link>
 					</li>
+
+					<li>
+						<Link to='/restaurants'>
+							view restaurants
+						</Link>
+					</li>
 				</ul>
 			</nav>			
 			<Switch>
 				<Route exact path ='/'>
-					<Container>
-						<h1>this is the home page.</h1>
-					</Container>
+					<Home />
 				</Route>
 				<Route path='/dashboard'>
 					<Dashboard />
 				</Route>
+				
 			</Switch>
 			
 		</Router>	
