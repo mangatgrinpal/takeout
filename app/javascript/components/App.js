@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
+import Navigation from './Navigation';
 import Home from './Home';
 import Dashboard from './Dashboard';
-import Orders from './Orders';
-import Menu from './Menu';
+import RestaurantList from './RestaurantList';
 
 import { 
 	BrowserRouter as Router,
@@ -13,36 +13,22 @@ import {
 
 
 import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
 
 const App = () => {
 	return (
 		<Router>
-			<nav>
-				<ul>
-					<li>
-						<Link to='/'>
-							go home
-						</Link>
-					</li>
-					<li>
-						<Link to='/dashboard'>
-							go dashboard
-						</Link>
-					</li>
-
-					<li>
-						<Link to='/restaurants'>
-							view restaurants
-						</Link>
-					</li>
-				</ul>
-			</nav>			
+			<Navigation />
+		
 			<Switch>
 				<Route exact path ='/'>
 					<Home />
 				</Route>
 				<Route path='/dashboard'>
 					<Dashboard />
+				</Route>
+				<Route path='/restaurant-list'>
+					<RestaurantList />
 				</Route>
 				
 			</Switch>

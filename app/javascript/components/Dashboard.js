@@ -2,6 +2,8 @@ import React from 'react';
 import Orders from './Orders';
 import Menu from './Menu';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import {
 	BrowserRouter as Router,
@@ -18,14 +20,18 @@ const Dashboard = () => {
 
 	return (
 		<Container>
-			<h1>Hello Dashboard</h1>
-
+			<Row>
+				<Col>
+					<h1>Hello Dashboard</h1>
+				</Col>
+			</Row>
+			
 			<ul>
 				<li>
-					<Link to={`${url}/orders`}>Orders</Link>
+					<Link to={`${url}/orders`}>View Orders</Link>
 				</li>
 				<li>
-					<Link to={`${url}/menu`}>Menu</Link>
+					<Link to={`${url}/menu`}>View Menu</Link>
 				</li>
 			</ul>
 
