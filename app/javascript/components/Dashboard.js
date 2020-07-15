@@ -33,6 +33,11 @@ const Dashboard = () => {
 				<li>
 					<Link to={`${url}/menu`}>View Menu</Link>
 				</li>
+				<li>
+					<Link to='/'>
+						go home
+					</Link>
+				</li>
 			</ul>
 
 			<Switch>
