@@ -7,7 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
 
 const initialState = {
-	cat: 'dog'
+
 };
 
 const store = createStore(
