@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 import Home from './Home';
 import Dashboard from './Dashboard';
 import RestaurantList from './RestaurantList';
-// import UserSignUp from './UserSignUp';
+import UserSignUp from './UserSignUp';
 // import UserSignIn from './UserSignIn';
 
 import { 
@@ -38,11 +38,11 @@ const App = () => {
 					<Route path='/restaurant-list'>
 						<RestaurantList />
 					</Route>
-	{/*
+	
 					<Route path='/sign-up'>
 						<UserSignUp />
 					</Route>
-
+{/*
 					<Route path='/sign-in'>
 						<UserSignIn />
 					</Route>
