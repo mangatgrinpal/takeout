@@ -7,7 +7,7 @@ import Home from './Home';
 import Dashboard from './Dashboard';
 import RestaurantList from './RestaurantList';
 import UserSignUp from './UserSignUp';
-// import UserSignIn from './UserSignIn';
+import UserSignIn from './UserSignIn';
 
 import { 
 	BrowserRouter as Router,
@@ -16,9 +16,6 @@ import {
 	Link
 } from 'react-router-dom';
 
-
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
 
 import { store } from '../store';
 
@@ -42,11 +39,9 @@ const App = () => {
 					<Route path='/sign-up'>
 						<UserSignUp />
 					</Route>
-{/*
 					<Route path='/sign-in'>
 						<UserSignIn />
 					</Route>
-	*/}				
 				</Switch>
 				
 			</Router>			

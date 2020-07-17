@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import {
 	setAuthHeaders,
-	persistAuthheadersInDeviceStorage,
+	persistAuthHeadersInDeviceStorage,
 	deleteAuthHeaders,
 	deleteAuthHeadersFromDeviceStorage
 } from '../utils/auth';
@@ -37,11 +37,18 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 			payload: data
 		})
 
+		history.push('/dashboard')
 
 	} catch(error) {
+
 		dispatch({
 			type: USER_SIGN_UP_FAILURE
 
 		})
 	}
+}
+
+export const userSignIn = (email, password, history) => async dispatch => {
+
+
 }
