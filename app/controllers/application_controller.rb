@@ -1,3 +1,7 @@
 class ApplicationController < ActionController::Base
-        include DeviseTokenAuth::Concerns::SetUserByToken
+	include DeviseTokenAuth::Concerns::SetUserByToken
+
+	protect_from_forgery with: :null_session, if: -> { request.format.json? }
+	wrap_parameters false
+
 end

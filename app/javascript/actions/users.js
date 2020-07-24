@@ -1,7 +1,13 @@
 import {
 	USER_SIGN_UP_REQUEST,
 	USER_SIGN_UP_SUCCESS,
-	USER_SIGN_UP_FAILURE
+	USER_SIGN_UP_FAILURE,
+	USER_SIGN_IN_REQUEST,
+	USER_SIGN_IN_SUCCESS,
+	USER_SIGN_IN_FAILURE,
+	USER_SIGN_OUT_REQUEST,
+	USER_SIGN_OUT_SUCCESS,
+	USER_SIGN_OUT_FAILURE
 } from './types';
 
 import axios from 'axios';
@@ -27,6 +33,7 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 			password_confirmation: passwordConfirmation
 		})
 
+
 		setAuthHeaders(res.headers)
 		persistAuthheadersInDeviceStorage(res.headers)
 
@@ -42,7 +49,8 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 	} catch(error) {
 
 		dispatch({
-			type: USER_SIGN_UP_FAILURE
+			type: USER_SIGN_UP_FAILURE,
+			payload: error.response
 
 		})
 	}
@@ -50,5 +58,18 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 
 export const userSignIn = (email, password, history) => async dispatch => {
 
+	dispatch({
+		type: USER_SIGN_IN_REQUEST
+	})
+
+	try {
+
+		const res = await axios.post('/users/sign_in', {
+			email: email,
+			password: password
+		})
+	} catch (error) {
+		console.log(error)
+	}
 
 }
