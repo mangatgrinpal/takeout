@@ -19,7 +19,6 @@ const initialState = {
 
 export default function(state=initialState, action) {
 	const { type, payload } = action;
-
 	switch(type) {
 		case USER_SIGN_UP_REQUEST:
 		case USER_SIGN_IN_REQUEST:
@@ -43,6 +42,26 @@ export default function(state=initialState, action) {
 				currentUser: null,
 				loading: false,
 				errorMessages: payload
+			};
+		case USER_SIGN_IN_SUCCESS:
+			return {
+				...state,
+				currentUser: payload,
+				loading: false,
+				errorMessages: [],
+				isAuthenticated: true
+			};
+		case USER_SIGN_OUT_SUCCESS:
+			return {
+				...state,
+				currentUser: null,
+				loading: false,
+				isAuthenticated: false
+			};
+		case USER_SIGN_OUT_FAILURE:
+			return {
+				...state,
+				loading: false
 			}
 		default:
 			return state

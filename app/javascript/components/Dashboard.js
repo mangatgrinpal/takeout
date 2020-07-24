@@ -4,6 +4,11 @@ import Menu from './Menu';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+
+import { connect } from 'react-redux';
+
+import { userSignOut } from '../actions/users';
 
 import {
 	BrowserRouter as Router,
@@ -11,18 +16,30 @@ import {
 	Route,
 	Link,
 	useParams,
-	useRouteMatch
+	useRouteMatch,
+	useHistory
 } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard = ({
+	userSignOut,
+	users: { currentUser }
+}) => {
 
 	let { path, url } = useRouteMatch();
+	let { history } = useHistory();
+
+	console.log(currentUser)
+
+	const handleSignOut = () => {
+
+	}
 
 	return (
 		<Container>
 			<Row>
 				<Col>
 					<h1>Hello Dashboard</h1>
+					<Button onClick={()=>{userSignOut()}}> Sign Out</Button>
 				</Col>
 			</Row>
 			
@@ -56,4 +73,11 @@ const Dashboard = () => {
 	)
 }
 
-export default Dashboard
+const mapStateToProps = state => ({
+	users: state.users
+})
+
+export default connect(
+	mapStateToProps,
+	{userSignOut}
+	)(Dashboard)

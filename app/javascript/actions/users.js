@@ -25,6 +25,8 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 		type: USER_SIGN_UP_REQUEST
 	})
 
+
+
 	try {
 
 		const res = await axios.post('/users', {
@@ -35,7 +37,9 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 
 
 		setAuthHeaders(res.headers)
-		persistAuthheadersInDeviceStorage(res.headers)
+		persistAuthHeadersInDeviceStorage(res.headers)
+
+
 
 		const { data } = res.data;
 
@@ -47,6 +51,9 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 		history.push('/dashboard')
 
 	} catch(error) {
+
+
+		console.log(error)
 
 		dispatch({
 			type: USER_SIGN_UP_FAILURE,
@@ -69,7 +76,80 @@ export const userSignIn = (email, password, history) => async dispatch => {
 			password: password
 		})
 	} catch (error) {
-		console.log(error)
+
+		let message;
+
+		const { response: { status} } = error;
+
+		if (status === 401) {
+			message = 'Invalid credentials, please try again.'
+		}
+
+		if (status === 500) {
+			message = 'Uh oh, something went wrong. Please try again.'
+		}
+
+		dispatch({
+			type: USER_SIGN_IN_FAILURE,
+			payload: message
+		})
 	}
 
 }
+
+export const userSignOut = history => async dispatch => {
+
+	const userSignOutCredentials = {
+		'access-token': await localStorage.getItem('access-token'),
+		'client': await localStorage.getItem('client'),
+		'uid': await localStorage.getItem('uid')
+	}
+
+	dispatch({
+		type: USER_SIGN_OUT_REQUEST
+	})
+	debugger
+	try {
+
+		const res = await axios.delete('/users/sign_out', {
+			data: userSignOutCredentials
+		})
+
+		debugger
+		deleteAuthHeaders()
+		deleteAuthHeadersFromDeviceStorage()
+
+		dispatch({
+			type: USER_SIGN_OUT_SUCCESS
+		})
+
+		history.push('/')
+
+
+	} catch(error) {
+		console.log(error)
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
