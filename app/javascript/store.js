@@ -6,17 +6,25 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from './reducers';
 
-const initialState = {
+import { loadState, saveState } from './localStorage';
 
-};
+
+
+const persistedState = loadState();
 
 const store = createStore(
 	rootReducer,
-	initialState,
+	persistedState,
 	composeWithDevTools(
 		applyMiddleware(thunk)
 	)
 );
+
+store.subscribe(() => {
+	saveState({
+		users: store.getState().users
+	});
+});
 
 export {
 	store

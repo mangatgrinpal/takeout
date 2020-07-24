@@ -75,6 +75,20 @@ export const userSignIn = (email, password, history) => async dispatch => {
 			email: email,
 			password: password
 		})
+
+		setAuthHeaders(res.headers)
+		persistAuthHeadersInDeviceStorage(res.headers)
+
+		const { data } = res.data;
+
+		dispatch({
+			type: USER_SIGN_IN_SUCCESS,
+			payload: data
+		})
+
+		history.push('/dashboard')
+
+
 	} catch (error) {
 
 		let message;
@@ -108,14 +122,14 @@ export const userSignOut = history => async dispatch => {
 	dispatch({
 		type: USER_SIGN_OUT_REQUEST
 	})
-	debugger
+	
 	try {
 
 		const res = await axios.delete('/users/sign_out', {
 			data: userSignOutCredentials
 		})
 
-		debugger
+		
 		deleteAuthHeaders()
 		deleteAuthHeadersFromDeviceStorage()
 

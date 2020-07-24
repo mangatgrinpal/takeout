@@ -26,20 +26,14 @@ const Dashboard = ({
 }) => {
 
 	let { path, url } = useRouteMatch();
-	let { history } = useHistory();
-
-	console.log(currentUser)
-
-	const handleSignOut = () => {
-
-	}
+	const history = useHistory();
 
 	return (
 		<Container>
 			<Row>
 				<Col>
 					<h1>Hello Dashboard</h1>
-					<Button onClick={()=>{userSignOut()}}> Sign Out</Button>
+					<Button onClick={()=>{userSignOut(history)}}> Sign Out</Button>
 				</Col>
 			</Row>
 			
