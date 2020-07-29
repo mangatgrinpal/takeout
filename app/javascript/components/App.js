@@ -9,40 +9,35 @@ import RestaurantList from './RestaurantList';
 import UserSignUp from './UserSignUp';
 import UserSignIn from './UserSignIn';
 import PrivateRouteWrapper from './PrivateRouteWrapper';
+import PublicRoute from './PublicRoute';
 
 import { 
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Link
+	Link,
+	withRouter
 } from 'react-router-dom';
 
 
 import { store } from '../store';
 
 const App = () => {
+	
+	
 	return (
 		<Provider store={store}>
 			<Router>
-				<Navigation />
-			
 				<Switch>
-					<Route exact path ='/'>
-						<Home />
-					</Route>
+
 					<PrivateRouteWrapper path='/dashboard'>
 						<Dashboard />
 					</PrivateRouteWrapper>
-					<Route path='/restaurant-list'>
-						<RestaurantList />
-					</Route>
-	
-					<Route path='/sign-up'>
-						<UserSignUp />
-					</Route>
-					<Route path='/sign-in'>
-						<UserSignIn />
-					</Route>
+
+					<PublicRoute exact path='/' component={Home} />
+					<PublicRoute exact path='/restaurant-list' component={RestaurantList} />
+					<PublicRoute exact path='/sign-up' component={UserSignUp} />
+					<PublicRoute exact path='/sign-in' component={UserSignIn} />
 				</Switch>
 				
 			</Router>			
