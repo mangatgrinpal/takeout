@@ -13,12 +13,12 @@ const Navigation = () => {
 						go home
 					</Link>
 				</li>
-				<li>
+				{/*<li>
 					<Link to='/dashboard'>
 						go dashboard
 					</Link>
 				</li>
-
+				*/}
 				<li>
 					<Link to='/restaurant-list'>
 						view restaurants

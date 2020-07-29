@@ -33,7 +33,9 @@ const Dashboard = ({
 			<Row>
 				<Col>
 					<h1>Hello Dashboard</h1>
+					{ currentUser &&
 					<Button onClick={()=>{userSignOut(history)}}> Sign Out</Button>
+					}
 				</Col>
 			</Row>
 			
@@ -43,11 +45,6 @@ const Dashboard = ({
 				</li>
 				<li>
 					<Link to={`${url}/menu`}>View Menu</Link>
-				</li>
-				<li>
-					<Link to='/'>
-						go home
-					</Link>
 				</li>
 			</ul>
 

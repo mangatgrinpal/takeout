@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import RestaurantList from './RestaurantList';
 import UserSignUp from './UserSignUp';
 import UserSignIn from './UserSignIn';
+import PrivateRouteWrapper from './PrivateRouteWrapper';
 
 import { 
 	BrowserRouter as Router,
@@ -29,9 +30,9 @@ const App = () => {
 					<Route exact path ='/'>
 						<Home />
 					</Route>
-					<Route path='/dashboard'>
+					<PrivateRouteWrapper path='/dashboard'>
 						<Dashboard />
-					</Route>
+					</PrivateRouteWrapper>
 					<Route path='/restaurant-list'>
 						<RestaurantList />
 					</Route>
