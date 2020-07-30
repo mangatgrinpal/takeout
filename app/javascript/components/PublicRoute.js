@@ -4,7 +4,8 @@ import Navigation from './Navigation';
 import { Route } from 'react-router-dom';
 
 const PublicRoute = ({ 
-	component: Component, ...rest
+	component: Component,
+	...rest
 }) => {
 	return (
 

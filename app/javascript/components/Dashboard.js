@@ -1,4 +1,5 @@
 import React from 'react';
+import DashboardNav from './DashboardNav';
 import Orders from './Orders';
 import Menu from './Menu';
 import Container from 'react-bootstrap/Container';
@@ -29,33 +30,25 @@ const Dashboard = ({
 	const history = useHistory();
 
 	return (
-		<Container>
+		<Container fluid={true}>
 			<Row>
-				<Col>
-					<h1>Hello Dashboard</h1>
-					{ currentUser &&
-					<Button onClick={()=>{userSignOut(history)}}> Sign Out</Button>
-					}
+			<DashboardNav 
+				url={url}
+				userSignOut={userSignOut}
+				history={history}
+				currentUser={currentUser}
+			/>
+				<Col md={{span: 9, offset: 3}}>
+
+					
 				</Col>
 			</Row>
-			
-			<ul>
-				<li>
-					<Link to={`${url}/orders`}>View Orders</Link>
-				</li>
-				<li>
-					<Link to={`${url}/menu`}>View Menu</Link>
-				</li>
-			</ul>
 
 			<Switch>
-				<Route exact path={path}>
-					<h3>What would you like to do today?</h3>
-				</Route>
-				<Route path={`${path}/orders`}>
+				<Route exact path={`${path}/orders`}>
 					<Orders />
 				</Route>
-				<Route path={`${path}/menu`}>
+				<Route exact path={`${path}/menu`}>
 					<Menu />
 				</Route>
 			</Switch>

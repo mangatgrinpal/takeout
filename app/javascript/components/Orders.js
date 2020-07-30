@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 
 const Orders = () => {
 
 	return (
-		<Container>
+		<Col md={{span: 9, offset: 3}}>
 			<h1>Order page foo</h1>
-		</Container>
+		</Col>
 	)	
 }
 

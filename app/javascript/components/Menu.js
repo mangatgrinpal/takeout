@@ -1,12 +1,13 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 
 const Menu = () => {
 	return (
-		<Container>
-			<h1>Menu goes here foo</h1>
-		</Container>
+		<Col md={{span: 9, offset: 3}}>
+			<h1>Menu page foo</h1>
+		</Col>
 	)
 }
 
 export default Menu
+
