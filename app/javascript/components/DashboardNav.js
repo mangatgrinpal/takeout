@@ -9,23 +9,34 @@ const DashboardNav = ({
 	url,
 	userSignOut,
 	history,
-	currentUser
+	dashNavVisible,
+	setDashNavVisible
 }) => {
+
+	const handleClick = visibility => {
+		setDashNavVisible(visibility)
+	}
 
 
 	return (
-		<Col md={3} className='fixed-top'>
+		<Col md={3} className='fixed-top bg-light vh-100'>
 			<ul>
 				<li>
-					<Link to={`${url}/orders`}>View Orders</Link>
+					<Link 
+						to={`${url}/orders`}
+						onClick={()=>{handleClick(false)}}
+					>View Orders</Link>
 				</li>
 				<li>
-					<Link to={`${url}/menu`}>View Menu</Link>
+					<Link 
+						to={`${url}/menu`}
+						onClick={()=>{handleClick(false)}}
+					>View Menu</Link>
 				</li>
 				<li>
-				{ currentUser &&
-				<Button onClick={()=>{userSignOut(history)}}> Sign Out</Button>
-				}
+
+					<Button onClick={()=>{userSignOut(history)}}> Sign Out</Button>
+
 				</li>
 			</ul>
 		</Col>

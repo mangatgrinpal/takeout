@@ -2,6 +2,12 @@ import React, { Fragment } from 'react';
 
 import { Provider } from 'react-redux';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+
+library.add(fas, far)
+
 import Navigation from './Navigation';
 import Home from './Home';
 import Dashboard from './Dashboard';

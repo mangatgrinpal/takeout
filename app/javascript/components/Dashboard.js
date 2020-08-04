@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardNav from './DashboardNav';
 import Orders from './Orders';
 import Menu from './Menu';
@@ -21,6 +21,10 @@ import {
 	useHistory
 } from 'react-router-dom';
 
+import { CSSTransition } from 'react-transition-group';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const Dashboard = ({
 	userSignOut,
 	users: { currentUser }
@@ -29,19 +33,33 @@ const Dashboard = ({
 	let { path, url } = useRouteMatch();
 	const history = useHistory();
 
+	const [ dashNavVisible, setDashNavVisible ] = useState(false)
+
 	return (
 		<Container fluid={true}>
 			<Row>
-			<DashboardNav 
-				url={url}
-				userSignOut={userSignOut}
-				history={history}
-				currentUser={currentUser}
-			/>
-				<Col md={{span: 9, offset: 3}}>
+				<CSSTransition
+					in={dashNavVisible}
+					timeout={600}
+					unmountOnExit
+					classNames='slide'
+				>
+					<DashboardNav 
+						url={url}
+						userSignOut={userSignOut}
+						history={history}
+						dashNavVisible={dashNavVisible}
+						setDashNavVisible={setDashNavVisible}
+					/>
+				</CSSTransition>
+				<Col md={3} className='bg-light h-100'>
+					<FontAwesomeIcon
+					 icon={['fas','bars']}
+					 onClick={()=>{setDashNavVisible(true)}}
+					 size='2x'/>
 
-					
 				</Col>
+				
 			</Row>
 
 			<Switch>
