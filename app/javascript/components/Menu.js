@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react';
+
+import MenuItemForm from './MenuItemForm';
+
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const Menu = () => {
 	return (
-		<Col md={{span: 9, offset: 3}}>
-			<h1>Menu page foo</h1>
-		</Col>
+		<Fragment>
+			<Col md={{span: 9, offset: 3}}>
+				<p>Menu page foo</p>
+			</Col>
+		</Fragment>
 	)
 }
 

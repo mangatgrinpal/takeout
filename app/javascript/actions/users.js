@@ -86,6 +86,7 @@ export const userSignIn = (email, password, history) => async dispatch => {
 			payload: data
 		})
 
+		// do a redirect to menu if user has 0 menu items
 		history.push('/dashboard/orders')
 
 

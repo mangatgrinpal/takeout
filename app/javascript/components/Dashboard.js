@@ -18,7 +18,8 @@ import {
 	Link,
 	useParams,
 	useRouteMatch,
-	useHistory
+	useHistory,
+	useLocation
 } from 'react-router-dom';
 
 import { CSSTransition } from 'react-transition-group';
@@ -32,8 +33,20 @@ const Dashboard = ({
 
 	let { path, url } = useRouteMatch();
 	const history = useHistory();
+	const location = useLocation();
 
 	const [ dashNavVisible, setDashNavVisible ] = useState(false)
+
+
+
+	const currentPage = () => {
+		let res = location.pathname.split('/')
+		let page = res.slice(-1)[0]
+		
+		let currentPage = page.charAt(0).toUpperCase() + page.slice(1)
+
+		return currentPage
+	}
 
 	return (
 		<Container fluid={true}>
@@ -42,7 +55,7 @@ const Dashboard = ({
 					in={dashNavVisible}
 					timeout={600}
 					unmountOnExit
-					classNames='slide'
+					classNames='slide-right'
 				>
 					<DashboardNav 
 						url={url}
@@ -57,10 +70,11 @@ const Dashboard = ({
 					 icon={['fas','bars']}
 					 onClick={()=>{setDashNavVisible(true)}}
 					 size='2x'/>
-
+					 &nbsp;
+					 {currentPage()}
 				</Col>
 				
-			</Row>
+			
 
 			<Switch>
 				<Route exact path={`${path}/orders`}>
@@ -69,7 +83,9 @@ const Dashboard = ({
 				<Route exact path={`${path}/menu`}>
 					<Menu />
 				</Route>
+
 			</Switch>
+			</Row>
 		</Container>		
 		
 	)

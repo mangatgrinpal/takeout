@@ -28,43 +28,32 @@ h1 {
 
 /* Transitions for animations will be placed here */
 
-/* slide */
+/* slide-right */
 
-.slide-enter {
-	transform: translateY(-100%);
+.slide-right-enter {
+	transform: translateX(-100%);
 	opacity: 0;
-	max-height: 0;
-	overflow: hidden;
 }
 
-.slide-enter-active {
+.slide-right-enter-active {
 	transform: none;
 	opacity: 1;
-	max-height: 90vh;
 	transition: all 600ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
-.slide-enter-done {
+.slide-right-enter-done {
 	transform: none;
-	max-height: 90vh;
 	opacity: 1;
 }
 
-.slide-exit {
+.slide-right-exit {
 	transform: none;
-	max-height: 90vh;
-	opacity: 1;
 }
-.slide-exit-active {
-	transform: translateY(-100%);
-	opacity: 0;
-	overflow: hidden;
-	max-height: 0;
+.slide-right-exit-active {
+	transform: translateX(-100%);
 	transition: all 600ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
-.slide-exit-done {
-	transform: translateY(-100%);
-	overflow: hidden;
-	max-height: 0;
-	opacity: 0;
+.slide-right-exit-done {
+	transform: translateX(-100%);
 }
+
