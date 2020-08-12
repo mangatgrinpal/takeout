@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DashboardNav from './DashboardNav';
 import Orders from './Orders';
 import Menu from './Menu';
+import MenuItemForm from './MenuItemForm';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -43,9 +44,9 @@ const Dashboard = ({
 		let res = location.pathname.split('/')
 		let page = res.slice(-1)[0]
 		
-		let currentPage = page.charAt(0).toUpperCase() + page.slice(1)
+		let pageCapitalized = page.charAt(0).toUpperCase() + page.slice(1)
 
-		return currentPage
+		return pageCapitalized
 	}
 
 	return (
@@ -70,6 +71,7 @@ const Dashboard = ({
 					 icon={['fas','bars']}
 					 onClick={()=>{setDashNavVisible(true)}}
 					 size='2x'/>
+					 &nbsp;
 					 &nbsp;
 					 {currentPage()}
 				</Col>
