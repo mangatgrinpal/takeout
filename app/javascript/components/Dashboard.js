@@ -3,6 +3,7 @@ import DashboardNav from './DashboardNav';
 import Orders from './Orders';
 import Menu from './Menu';
 import MenuItemForm from './MenuItemForm';
+import RestaurantForm from './RestaurantForm';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -75,12 +76,13 @@ const Dashboard = ({
 					 &nbsp;
 					 {currentPage()}
 				</Col>
-				
-			
 
 			<Switch>
 				<Route exact path={`${path}/orders`}>
 					<Orders />
+				</Route>
+				<Route exact path={`${path}/restaurant`}>
+					<RestaurantForm />
 				</Route>
 				<Route exact path={`${path}/menu`}>
 					<Menu />

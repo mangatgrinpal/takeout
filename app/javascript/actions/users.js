@@ -81,6 +81,8 @@ export const userSignIn = (email, password, history) => async dispatch => {
 
 		const { data } = res.data;
 
+		debugger
+
 		dispatch({
 			type: USER_SIGN_IN_SUCCESS,
 			payload: data

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import users from './users';
-import items from './items';
+import menu from './menu';
 
 export default combineReducers({
 	users,
-	items
+	menu
 })

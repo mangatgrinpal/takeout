@@ -14,7 +14,8 @@ const initialState = {
 	currentUser: null,
 	loading: false,
 	errorMessages: '',
-	isAuthenticated: false
+	isAuthenticated: false,
+	restaurantFormVisible: false
 }
 
 export default function(state=initialState, action) {

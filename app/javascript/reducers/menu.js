@@ -5,7 +5,7 @@ import {
 	ADD_MENU_ITEM,
 	DELETE_MENU_ITEM,
 	SET_ITEM_FORM_VISIBILITY
-} from './types';
+} from '../actions/types';
 
 const initialState = {
 	menu: [],
@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
 				itemList: payload,
 				isFetching: false
 			};
-		case FETCH_ITEMS_ERROR:
+		case FETCH_ITEMS_FAILURE:
 			return {
 				...state,
 				isFetching: false
