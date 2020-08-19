@@ -45,7 +45,7 @@ const Dashboard = ({
 
 	useEffect(()=>{
 		
-		fetchRestaurant(history)
+		fetchRestaurant()
 
 	},[ fetchRestaurant ]);
 
@@ -90,16 +90,18 @@ const Dashboard = ({
 
 			<Switch>
 				<Route exact path={`${path}`}>
-					<Col md={12} className='fixed-top bg-light h-100'>
-						<CSSTransition
-							in={restaurantFormVisible}
-							timeout={600}
-							unmountOnExit
-							classNames='complete-fade'
-						>
+					
+					<CSSTransition
+						in={restaurantFormVisible}
+						timeout={600}
+						unmountOnExit
+						classNames='complete-fade'
+					>
+						<Col md={12} className='fixed-top bg-light h-100'>
 							<RestaurantForm />
-						</CSSTransition>
-					</Col>
+						</Col>
+					</CSSTransition>
+				
 				</Route>
 				<Route exact path={`${path}/orders`}>
 					<Orders />
