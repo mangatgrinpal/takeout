@@ -3,11 +3,13 @@ class RestaurantsController < ApplicationController
 
 
 	def index
+		@restaurant = current_user.restaurant
+		render json: @restaurant
 	end
 
 	def create
 		Restaurant.transaction do
-			@restaurant = Restaurant.new(restaurant_params)
+			@restaurant = current_user.restaurant.build(restaurant_params)
 			@address = Address.new(address_params)
 			@restarant.address = @address	
 		end

@@ -48,7 +48,7 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 			payload: data
 		})
 
-		history.push('/dashboard/menu')
+		history.push('/dashboard/restaurant')
 
 	} catch(error) {
 
@@ -89,7 +89,7 @@ export const userSignIn = (email, password, history) => async dispatch => {
 		})
 
 		// do a redirect to menu if user has 0 menu items
-		history.push('/dashboard/orders')
+		history.push('/dashboard')
 
 
 	} catch (error) {

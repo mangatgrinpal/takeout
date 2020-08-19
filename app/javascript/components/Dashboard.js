@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DashboardNav from './DashboardNav';
 import Orders from './Orders';
 import Menu from './Menu';
@@ -12,6 +12,8 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 
 import { userSignOut } from '../actions/users';
+
+import { fetchRestaurant } from '../actions/restaurants';
 
 import {
 	BrowserRouter as Router,
@@ -30,6 +32,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Dashboard = ({
 	userSignOut,
+	fetchRestaurant,
 	users: { currentUser }
 }) => {
 
@@ -39,6 +42,9 @@ const Dashboard = ({
 
 	const [ dashNavVisible, setDashNavVisible ] = useState(false)
 
+	useEffect(()=>{
+		fetchRestaurant()
+	},[ fetchRestaurant ]);
 
 
 	const currentPage = () => {
@@ -78,6 +84,9 @@ const Dashboard = ({
 				</Col>
 
 			<Switch>
+				<Route exact path={`${path}`}>
+					<h1>sup</h1>
+				</Route>
 				<Route exact path={`${path}/orders`}>
 					<Orders />
 				</Route>
@@ -96,10 +105,14 @@ const Dashboard = ({
 }
 
 const mapStateToProps = state => ({
-	users: state.users
+	users: state.users,
+	restaurants: state.restaurants
 })
 
 export default connect(
 	mapStateToProps,
-	{userSignOut}
-	)(Dashboard)
+	{
+		userSignOut,
+		fetchRestaurant
+	}
+)(Dashboard)

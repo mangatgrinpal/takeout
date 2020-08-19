@@ -16,6 +16,10 @@ import axios from './axios';
 
 export const fetchMenu = restaurant => async dispatch => {
 
+	dispatch({
+		type: FETCH_ITEMS_REQUEST
+	})
+
 	const currentUserCredentials = {
 		'access-token': await localStorage.getItem('access-token'),
 		'client': await localStorage.getItem('client'),
@@ -24,12 +28,8 @@ export const fetchMenu = restaurant => async dispatch => {
 
 	try {
 
-		dispatch({
-			type: FETCH_ITEMS_REQUEST
-		})
-
-		const res = await axios.get(`/items>restaurant=${restaurant}`, { headers:
-			currentUserCredentials
+		const res = await axios.get(`/items>restaurant=${restaurant}`, { 
+			headers: currentUserCredentials
 		});
 
 		setAuthHeaders(res.headers)
