@@ -9,7 +9,8 @@ import {
 
 const initialState = {
 	restaurant: [],
-	isFetching: true
+	isFetching: true,
+	restaurantFormVisible: false
 }
 
 export default function(state = initialState, action) {
@@ -30,7 +31,8 @@ export default function(state = initialState, action) {
 		case FETCH_RESTAURANT_FAILURE:
 			return {
 				...state,
-				isFetching: false
+				isFetching: false,
+				restaurantFormVisible: true
 			};
 		default:
 			return state

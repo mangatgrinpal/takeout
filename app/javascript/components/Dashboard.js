@@ -33,7 +33,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Dashboard = ({
 	userSignOut,
 	fetchRestaurant,
-	users: { currentUser }
+	users: { currentUser },
+	restaurants: { restaurantFormVisible }
 }) => {
 
 	let { path, url } = useRouteMatch();
@@ -43,7 +44,9 @@ const Dashboard = ({
 	const [ dashNavVisible, setDashNavVisible ] = useState(false)
 
 	useEffect(()=>{
-		fetchRestaurant()
+		
+		fetchRestaurant(history)
+
 	},[ fetchRestaurant ]);
 
 
@@ -83,15 +86,23 @@ const Dashboard = ({
 					 {currentPage()}
 				</Col>
 
+				
+
 			<Switch>
 				<Route exact path={`${path}`}>
-					<h1>sup</h1>
+					<Col md={12} className='fixed-top bg-light h-100'>
+						<CSSTransition
+							in={restaurantFormVisible}
+							timeout={600}
+							unmountOnExit
+							classNames='complete-fade'
+						>
+							<RestaurantForm />
+						</CSSTransition>
+					</Col>
 				</Route>
 				<Route exact path={`${path}/orders`}>
 					<Orders />
-				</Route>
-				<Route exact path={`${path}/restaurant`}>
-					<RestaurantForm />
 				</Route>
 				<Route exact path={`${path}/menu`}>
 					<Menu />

@@ -4,7 +4,8 @@ import {
 	FETCH_RESTAURANT_FAILURE,
 	ADD_RESTAURANT_REQUEST,
 	ADD_RESTAURANT_SUCCESS,
-	ADD_RESTAURANT_FAILURE
+	ADD_RESTAURANT_FAILURE,
+	SET_RESTAURANT_FORM_VISIBILITY
 } from './types';
 
 import {
@@ -44,7 +45,11 @@ export const fetchRestaurant = history => async dispatch => {
 		})
 
 	} catch(error) {
-		console.log(error)
+
+		dispatch({
+			type: FETCH_RESTAURANT_FAILURE,
+			payload: error
+		})
 	}
 }
 
@@ -54,4 +59,11 @@ export const addRestaurant = () => async dispatch => {
 
 export const fetchRestaurantList = () => async dispatch => {
 
+}
+
+export const setRestaurantFormVisibility = visibility => dispatch => {
+	dispatch({
+		type: SET_RESTAURANT_FORM_VISIBILITY,
+		payload: visibility
+	})
 }

@@ -4,7 +4,11 @@ class RestaurantsController < ApplicationController
 
 	def index
 		@restaurant = current_user.restaurant
-		render json: @restaurant
+		if @restaurant
+			render json: @restaurant, status: 201
+		else
+			render json: @restaurant.errors.messages, status: 404
+		end
 	end
 
 	def create
