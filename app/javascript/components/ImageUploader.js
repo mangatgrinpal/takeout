@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ImageUploader = ({
 	imageData, 
-	setImageData,
-	setImageError
+	setImageData
+	// setImageError
 }) => {
 
 	const { 
@@ -19,7 +19,7 @@ const ImageUploader = ({
 	} = useDropzone({
 		accept: 'image/*',
 		onDrop: acceptedFiles => {
-			clearImageError()
+			// clearImageError()
 			setImageData(acceptedFiles.map(file=> Object.assign(file, {
 				preview: URL.createObjectURL(file)
 			})));
@@ -44,10 +44,10 @@ const ImageUploader = ({
 		</div>
 	));
 
-	const clearImageError = () => {
-		setImageError('')
-		document.getElementById('imageField').classList.remove('invalid-error-frame')
-	}
+	// const clearImageError = () => {
+	// 	setImageError('')
+	// 	document.getElementById('imageField').classList.remove('invalid-error-frame')
+	// }
 
 	useEffect(()=> ()=> {
 		// make sure to revoke the data uris to avoid memory leaks

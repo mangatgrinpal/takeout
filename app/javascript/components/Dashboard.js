@@ -3,7 +3,8 @@ import DashboardNav from './DashboardNav';
 import Orders from './Orders';
 import Menu from './Menu';
 import MenuItemForm from './MenuItemForm';
-import RestaurantForm from './RestaurantForm';
+
+import MultiStepRestaurantForm from './MultiStepRestaurantForm';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -97,8 +98,8 @@ const Dashboard = ({
 						unmountOnExit
 						classNames='complete-fade'
 					>
-						<Col md={12} className='fixed-top bg-light h-100'>
-							<RestaurantForm />
+						<Col md={{span: 6, offset: 3}} className='fixed-top bg-light h-100'>
+							<MultiStepRestaurantForm />
 						</Col>
 					</CSSTransition>
 				

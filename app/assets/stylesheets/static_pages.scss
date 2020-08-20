@@ -1,3 +1,53 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.dropzone {
+	padding-top: 8rem;
+}
+
+.dropzone,.thumbs-container {
+	height: 24vh;
+	border: 1px dashed #ced4da;
+	border-radius: 0.25rem;
+}
+
+.thumbs-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	.thumb {
+		display: inline-flex;
+		border-radius: 2px;
+		border: 1px solid #eaeaea;
+		margin: auto 0px;
+		width: 15rem;
+		height: 15rem;
+		padding: 4px;
+		box-sizing: border-box;
+		
+
+		.thumb-inner {
+			display: flex;
+			min-width: 0px;
+			overflow: hidden;
+
+			svg {
+				z-index: 10;
+				padding: 0.25rem;
+				border-radius: 1rem;
+				background-color: black;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+
+			.thumb-img {
+				display: block;
+				height: 100%;
+			}
+		}
+	}
+}
