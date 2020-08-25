@@ -24,10 +24,10 @@ const AddressInfo = ({
 				<Form.Group controlId='formGridAddress1'>
 					<Form.Label>Address</Form.Label>
 					<Form.Control 
-					name='address' 
+					name='address1' 
 					placeholder='1234 Main St'
 					onChange={handleInputChange}
-					value={restaurant.address} />
+					value={restaurant.address1} />
 				</Form.Group>
 
 				<Form.Group controlId='formGridAddress2'>

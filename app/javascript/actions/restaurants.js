@@ -57,8 +57,46 @@ export const fetchRestaurant = history => async dispatch => {
 	}
 }
 
-export const addRestaurant = () => async dispatch => {
+export const addRestaurant = (restaurant, history) => async dispatch => {
+	
+	dispatch({
+		type: ADD_RESTAURANT_REQUEST
+	})
 
+	const currentUserCredentials = {
+		'access-token': await localStorage.getItem('access-token'),
+		'client': await localStorage.getItem('client'),
+		'uid': await localStorage.getItem('uid')
+	}
+
+	try {
+
+
+		const res = await axios.post('/restaurants', restaurant,{
+			headers: currentUserCredentials
+			
+		});
+
+		setAuthHeaders(res.headers)
+		persistAuthHeadersInDeviceStorage(res.headers)
+
+		const { data } = res;
+
+		dispatch({
+			type: ADD_RESTAURANT_SUCCESS,
+			payload: data
+		})
+
+		history.push('/dashboard/menu')
+
+	} catch(error) {
+
+		dispatch({
+			type: ADD_RESTAURANT_FAILURE,
+			payload: error
+		})
+
+	}
 }
 
 export const fetchRestaurantList = () => async dispatch => {

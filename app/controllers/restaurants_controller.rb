@@ -13,10 +13,13 @@ class RestaurantsController < ApplicationController
 
 	def create
 		Restaurant.transaction do
-			@restaurant = current_user.restaurant.build(restaurant_params)
+
+			@restaurant = Restaurant.new(restaurant_params)
 			@address = Address.new(address_params)
-			@restarant.address = @address	
+			@restaurant.address = @address	
 		end
+
+		byebug
 		
 		if @restaurant.save
 			render json: @restaurant, status: 201
@@ -31,7 +34,7 @@ class RestaurantsController < ApplicationController
 	private
 
 	def restaurant_params
-		params.require(:restaurant).permit(:name, :description)
+		params.require(:restaurant).permit(:name, :description, :image, :user_id)
 	end
 
 	def address_params

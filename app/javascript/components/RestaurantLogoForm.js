@@ -13,8 +13,6 @@ const RestaurantLogoForm = ({
 	next
 }) => {
 
-	console.log(imageData)
-
 	const validate = () => {
 
 		return imageData.length == 0

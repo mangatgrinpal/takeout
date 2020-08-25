@@ -11,7 +11,10 @@ import ReviewForm from './ReviewForm';
 import Col from 'react-bootstrap/Col';
 
 
-const MultiStepRestaurantForm = () => {
+const MultiStepRestaurantForm = ({
+	addRestaurant,
+	currentUser
+}) => {
 
 		const pages = {
 		0: 'welcome',
@@ -23,17 +26,17 @@ const MultiStepRestaurantForm = () => {
 	};
 
 	const [ restaurant, setRestaurant ] = useState({
-		name:'',
-		description: '',
-		address: '',
+		name:'name',
+		description: 'description',
+		address1: '1234 fake street',
 		address2: '',
-		city: '',
-		state: '',
-		zipCode: ''
+		city: 'San Jose',
+		state: 'CA',
+		zipCode: '90365'
 	});
 
 	const [ imageData, setImageData ] = useState([])
-	const [ step, setStep ] = useState(0)
+	const [ step, setStep ] = useState(4)
 
 	const handleInputChange = e => {
 		setRestaurant({...restaurant, [e.target.name]: e.target.value})
@@ -60,7 +63,7 @@ const MultiStepRestaurantForm = () => {
 		imageData,
 		setImageData
 	}
-	const renderStep = (currentPage) => {
+	const renderPage = (currentPage) => {
 		switch (currentPage) {
 			case 'welcome':
 				return <Welcome key={currentStep} {...props}/>;
@@ -71,7 +74,11 @@ const MultiStepRestaurantForm = () => {
 			case 'restaurantLogo':
 				return <RestaurantLogoForm key={currentStep} {...props}/>;
 			case 'review':
-				return <ReviewForm key={currentStep} {...props}/>;
+				return <ReviewForm 
+									key={currentStep} 
+									{...props}
+									addRestaurant={addRestaurant}
+									currentUser={currentUser} />;
 			case 'submit':
 				return <Submit />;
 			default:
@@ -87,7 +94,7 @@ const MultiStepRestaurantForm = () => {
 					unmountOnExit
 					timeout={300}
 					classNames='page-change'>
-						{renderStep(currentStep)}
+						{renderPage(currentStep)}
 				</CSSTransition>
 			</TransitionGroup>
 		</Fragment>

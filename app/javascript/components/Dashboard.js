@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 
 import { userSignOut } from '../actions/users';
 
-import { fetchRestaurant } from '../actions/restaurants';
+import { fetchRestaurant, addRestaurant } from '../actions/restaurants';
 
 import {
 	BrowserRouter as Router,
@@ -34,6 +34,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Dashboard = ({
 	userSignOut,
 	fetchRestaurant,
+	addRestaurant,
 	users: { currentUser },
 	restaurants: { restaurantFormVisible }
 }) => {
@@ -99,7 +100,9 @@ const Dashboard = ({
 						classNames='complete-fade'
 					>
 						<Col md={{span: 6, offset: 3}} className='fixed-top bg-light h-100'>
-							<MultiStepRestaurantForm />
+							<MultiStepRestaurantForm 
+								addRestaurant={addRestaurant} 
+								currentUser={currentUser}/>
 						</Col>
 					</CSSTransition>
 				
@@ -127,6 +130,7 @@ export default connect(
 	mapStateToProps,
 	{
 		userSignOut,
-		fetchRestaurant
+		fetchRestaurant,
+		addRestaurant
 	}
 )(Dashboard)

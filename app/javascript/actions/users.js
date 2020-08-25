@@ -48,7 +48,7 @@ export const userSignUp = (email, password, passwordConfirmation, history) => as
 			payload: data
 		})
 
-		history.push('/dashboard/restaurant')
+		history.push('/dashboard')
 
 	} catch(error) {
 
@@ -81,7 +81,7 @@ export const userSignIn = (email, password, history) => async dispatch => {
 
 		const { data } = res.data;
 
-		debugger
+
 
 		dispatch({
 			type: USER_SIGN_IN_SUCCESS,
