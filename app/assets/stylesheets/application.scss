@@ -17,9 +17,6 @@
 
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-h1 {
-	color: red;
-}
 
 .error {
 	color: red;
@@ -83,5 +80,38 @@ h1 {
 }
 
 .complete-fade-exit-done {
+	opacity: 0;
+}
+
+
+
+
+
+
+/*fade for page transitions for restaurant wizard*/
+
+.page-change-enter {
+	opacity: 0;
+}
+
+.page-change-enter-active {
+	opacity: 1;
+	transition: opacity 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.page-change-enter-done {
+	opacity: 1;
+}
+
+.page-change-exit {
+	opacity: 1;
+}
+
+.page-change-exit-active {
+	opacity: 0;
+	transition: opacity 300ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.page-change-exit-done {
 	opacity: 0;
 }

@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
+
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Welcome from './Welcome';
 import RestaurantInfo from './RestaurantInfo';
 import AddressInfo from './AddressInfo';
 import RestaurantLogoForm from './RestaurantLogoForm';
+import ReviewForm from './ReviewForm';
+
+import Col from 'react-bootstrap/Col';
 
 
 const MultiStepRestaurantForm = () => {
@@ -55,23 +60,39 @@ const MultiStepRestaurantForm = () => {
 		imageData,
 		setImageData
 	}
-
-	switch (currentStep) {
-		case 'welcome':
-			return <Welcome {...props}/>;
-		case 'restaurantInfo':
-			return <RestaurantInfo {...props}/>;
-		case 'addressInfo':
-			return <AddressInfo {...props}/>;
-		case 'restaurantLogo':
-			return <RestaurantLogoForm {...props}/>;
-		case 'review':
-			return <Review />;
-		case 'submit':
-			return <Submit />;
-		default:
-			return null;
+	const renderStep = (currentPage) => {
+		switch (currentPage) {
+			case 'welcome':
+				return <Welcome key={currentStep} {...props}/>;
+			case 'restaurantInfo':
+				return <RestaurantInfo key={currentStep} {...props}/>;
+			case 'addressInfo':
+				return <AddressInfo key={currentStep} {...props}/>;
+			case 'restaurantLogo':
+				return <RestaurantLogoForm key={currentStep} {...props}/>;
+			case 'review':
+				return <ReviewForm key={currentStep} {...props}/>;
+			case 'submit':
+				return <Submit />;
+			default:
+				return null;
+		}	
 	}
+
+	return (
+		<Fragment>
+			<TransitionGroup component={Col} className='pt-5'>
+				<CSSTransition
+					key={currentStep}
+					unmountOnExit
+					timeout={300}
+					classNames='page-change'>
+						{renderStep(currentStep)}
+				</CSSTransition>
+			</TransitionGroup>
+		</Fragment>
+	)
+	
 };
 
 export default MultiStepRestaurantForm

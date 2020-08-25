@@ -2,12 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+
+.embed-responsive-item {
+	object-fit: cover;
+}
+
 .dropzone {
 	padding-top: 8rem;
 }
 
 .dropzone,.thumbs-container {
-	height: 24vh;
+	height: 40vh;
 	border: 1px dashed #ced4da;
 	border-radius: 0.25rem;
 }

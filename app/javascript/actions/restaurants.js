@@ -33,10 +33,14 @@ export const fetchRestaurant = history => async dispatch => {
 			headers: currentUserCredentials
 		});
 
+
+
 		setAuthHeaders(res.headers)
 		persistAuthHeadersInDeviceStorage(res.headers)
 
 		const { data } = res;
+
+
 
 
 		dispatch({

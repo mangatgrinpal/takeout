@@ -7,7 +7,7 @@ class RestaurantsController < ApplicationController
 		if @restaurant
 			render json: @restaurant, status: 201
 		else
-			render json: @restaurant.errors.messages, status: 404
+			render json: {}, status: 404
 		end
 	end
 

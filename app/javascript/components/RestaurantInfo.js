@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 
+import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
@@ -13,7 +15,13 @@ const RestaurantInfo = ({
 
 
 	return (
-		<Fragment>
+		<Container>
+			<Row>
+				<Col>
+					<h3>Tell us about your restaurant</h3>
+
+				</Col>
+			</Row>
 			<Form>
 				<Form.Row>
 			    <Form.Group as={Col} controlId='formGridName'>
@@ -38,10 +46,10 @@ const RestaurantInfo = ({
 			      	value={restaurant.description} />
 			    </Form.Group>
 			  </Form.Row>
-			  
+			  <Button onClick={previous}>Previous</Button>
 			  <Button onClick={next}>Next</Button>
 		  </Form>
-	  </Fragment>
+	  </Container>
 	)
 }
 
