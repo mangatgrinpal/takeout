@@ -5,4 +5,7 @@ class Restaurant < ApplicationRecord
 
 	belongs_to :user
 	has_one :address
+
+	has_many :menu_items
+	has_many :items, through: :menu_items
 end

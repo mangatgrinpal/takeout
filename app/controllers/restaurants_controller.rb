@@ -18,8 +18,6 @@ class RestaurantsController < ApplicationController
 			@address = Address.new(address_params)
 			@restaurant.address = @address	
 		end
-
-		byebug
 		
 		if @restaurant.save
 			render json: @restaurant, status: 201

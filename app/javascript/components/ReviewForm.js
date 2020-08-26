@@ -19,7 +19,9 @@ const ReviewForm = ({
 
 	const { name, description, address1, address2, city, state, zipCode } = restaurant;
 
-	const { history } = useHistory();
+	const history = useHistory();
+
+	console.log(history)
 
 	const thumbs = imageData.map(file=> (
 		<div className='thumb' key={file.name}>

@@ -21,8 +21,7 @@ const MultiStepRestaurantForm = ({
 		1: 'restaurantInfo' ,
 		2: 'addressInfo' ,
 		3: 'restaurantLogo' ,
-		4: 'review' ,
-		5: 'submit' 
+		4: 'review' 
 	};
 
 	const [ restaurant, setRestaurant ] = useState({
@@ -79,8 +78,6 @@ const MultiStepRestaurantForm = ({
 									{...props}
 									addRestaurant={addRestaurant}
 									currentUser={currentUser} />;
-			case 'submit':
-				return <Submit />;
 			default:
 				return null;
 		}	

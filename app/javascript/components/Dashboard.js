@@ -36,7 +36,7 @@ const Dashboard = ({
 	fetchRestaurant,
 	addRestaurant,
 	users: { currentUser },
-	restaurants: { restaurantFormVisible }
+	restaurants: { restaurantFormVisible, restaurant }
 }) => {
 
 	let { path, url } = useRouteMatch();
@@ -49,10 +49,10 @@ const Dashboard = ({
 		
 		fetchRestaurant()
 
-	},[ fetchRestaurant ]);
+	},[]);
 
 
-	const currentPage = () => {
+	const currentPageName = () => {
 		let res = location.pathname.split('/')
 		let page = res.slice(-1)[0]
 		
@@ -85,7 +85,7 @@ const Dashboard = ({
 					 size='2x'/>
 					 &nbsp;
 					 &nbsp;
-					 {currentPage()}
+					 {currentPageName()}
 				</Col>
 
 				
@@ -111,7 +111,7 @@ const Dashboard = ({
 					<Orders />
 				</Route>
 				<Route exact path={`${path}/menu`}>
-					<Menu />
+					<Menu restaurant={restaurant}/>
 				</Route>
 
 			</Switch>

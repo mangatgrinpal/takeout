@@ -1,5 +1,15 @@
 class ItemsController < ApplicationController
+	before_action :authenticate_user!
+
 	def index
+		@items = Restaurant.where(id:params[:restaurant]).first.items
+
+
+		if @items
+			render json: @items, status: 200
+		else
+			render json: @items.errors.messages, status: 404
+		end
 	end
 
 	def create

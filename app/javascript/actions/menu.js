@@ -1,9 +1,10 @@
 import {
-	FETCH_ITEMS_REQUEST,
-	FETCH_ITEMS_SUCCESS,
-	FETCH_ITEMS_FAILURE,
+	FETCH_MENU_REQUEST,
+	FETCH_MENU_SUCCESS,
+	FETCH_MENU_FAILURE,
 	ADD_MENU_ITEM,
-	DELETE_MENU_ITEM
+	DELETE_MENU_ITEM,
+	SET_ITEM_FORM_VISIBILITY
 } from './types';
 
 import {
@@ -11,13 +12,13 @@ import {
 	persistAuthHeadersInDeviceStorage
 } from '../utils/auth';
 
-import axios from './axios';
+import axios from 'axios';
 
 
 export const fetchMenu = restaurant => async dispatch => {
 
 	dispatch({
-		type: FETCH_ITEMS_REQUEST
+		type: FETCH_MENU_REQUEST
 	})
 
 	const currentUserCredentials = {
@@ -28,7 +29,9 @@ export const fetchMenu = restaurant => async dispatch => {
 
 	try {
 
-		const res = await axios.get(`/items>restaurant=${restaurant}`, { 
+		let stringified = JSON.stringify(restaurant)
+
+		const res = await axios.get(`/items?restaurant=${stringified}`, { 
 			headers: currentUserCredentials
 		});
 
@@ -37,8 +40,15 @@ export const fetchMenu = restaurant => async dispatch => {
 
 		const { data } = res;
 
+		if (data.length === 0) {
+			dispatch({
+				type: SET_ITEM_FORM_VISIBILITY,
+				payload: true
+			})
+		}
+
 		dispatch({
-			type: FETCH_ITEMS_SUCCESS,
+			type: FETCH_MENU_SUCCESS,
 			payload: data
 		})
 

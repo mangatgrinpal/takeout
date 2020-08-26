@@ -151,7 +151,7 @@ const MenuItemForm = () => {
 			<Container className='p-4'>
 				<h6 className='section-name pt-4 pt-md-0'>Add new item</h6>
 				<Form 
-					onKeyPress={submitFormOnEnter} 
+					// onKeyPress={submitFormOnEnter} 
 					onSubmit={e=> {handleSubmit(e)}}
 					className='pt-5 pt-md-3'>
 					<Form.Row>

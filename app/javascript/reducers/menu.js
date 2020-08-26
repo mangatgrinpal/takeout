@@ -1,14 +1,14 @@
 import {
-	FETCH_ITEMS_REQUEST,
-	FETCH_ITEMS_SUCCESS,
-	FETCH_ITEMS_FAILURE,
+	FETCH_MENU_REQUEST,
+	FETCH_MENU_SUCCESS,
+	FETCH_MENU_FAILURE,
 	ADD_MENU_ITEM,
 	DELETE_MENU_ITEM,
 	SET_ITEM_FORM_VISIBILITY
 } from '../actions/types';
 
 const initialState = {
-	menu: [],
+	items: [],
 	isFetching: true,
 	itemFormVisible: false
 }
@@ -16,18 +16,18 @@ const initialState = {
 export default function(state = initialState, action) {
 	const { type, payload } = action;
 	switch(type) {
-		case FETCH_ITEMS_REQUEST:
+		case FETCH_MENU_REQUEST:
 			return {
 				...state,
 				isFetching: true
 			};
-		case FETCH_ITEMS_SUCCESS:
+		case FETCH_MENU_SUCCESS:
 			return {
 				...state,
-				itemList: payload,
+				items: payload,
 				isFetching: false
 			};
-		case FETCH_ITEMS_FAILURE:
+		case FETCH_MENU_FAILURE:
 			return {
 				...state,
 				isFetching: false
@@ -36,7 +36,7 @@ export default function(state = initialState, action) {
 		case DELETE_MENU_ITEM:
 			return {
 				...state,
-				itemList: payload
+				items: payload
 			};
 		case SET_ITEM_FORM_VISIBILITY:
 			return {
