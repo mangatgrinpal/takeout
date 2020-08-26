@@ -33,7 +33,7 @@ const Menu = ({
 
 	},[ restaurant ]);
 
-	console.log(items)
+
 	return (
 		<Fragment>
 			{items.length == 0 ? 

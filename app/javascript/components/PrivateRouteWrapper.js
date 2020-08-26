@@ -35,4 +35,4 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps
-	)(PrivateRouteWrapper)
+)(PrivateRouteWrapper)
