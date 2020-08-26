@@ -13,7 +13,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const MenuItemForm = ({
 	items,
 	setItemFormVisibility,
-	addItem
+	addItem,
+	restaurant
 }) => {
 
 	const [ imageData, setImageData ] = useState([])
@@ -152,11 +153,12 @@ const MenuItemForm = ({
 			const formData = new FormData();
 			formData.append('[item]name', name)
 			formData.append('[item]description', description)
-			formData.append('[item]image', imageData)
+			formData.append('[item]price', price)
+			formData.append('[item]image', imageData[0])
 			
 
 
-			addItem(formData)	
+			addItem(formData, restaurant)	
 		}
 		
 		

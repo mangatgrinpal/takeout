@@ -35,7 +35,7 @@ const MultiStepRestaurantForm = ({
 	});
 
 	const [ imageData, setImageData ] = useState([])
-	const [ step, setStep ] = useState(4)
+	const [ step, setStep ] = useState(0)
 
 	const handleInputChange = e => {
 		setRestaurant({...restaurant, [e.target.name]: e.target.value})

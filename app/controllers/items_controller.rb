@@ -13,10 +13,17 @@ class ItemsController < ApplicationController
 	end
 
 	def create
-		@item = Item.new(item_params)
 
+
+		Item.transaction do
+			@item = Item.new(item_params)
+			@restaurant = Restaurant.where(id: params[:restaurant]).first
+			@menu_item = MenuItem.create!(item: @item, restaurant: @restaurant)
+		end
+
+		
 		if @item.save
-			render json: @item, status: 201
+			render json: @restaurant.items, status: 201
 		else
 			render json: @item.errors.messages, status: 400
 		end

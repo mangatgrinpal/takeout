@@ -57,7 +57,7 @@ export const fetchMenu = restaurant => async dispatch => {
 	}
 }
 
-export const addItem = (item) => async dispatch => {
+export const addItem = (item, restaurant) => async dispatch => {
 
 	const currentUserCredentials = {
 		'access-token': await localStorage.getItem('access-token'),
@@ -66,16 +66,24 @@ export const addItem = (item) => async dispatch => {
 	}
 
 	try {
-		const res = await axios.post('/items', item,{
+
+		let stringified = JSON.stringify(restaurant)
+
+		const res = await axios.post(`/items?restaurant=${stringified}`, item,{
 			headers: currentUserCredentials
 		});
 
-		debugger
-		const { data: { items }} = res;
+
+		const { data } = res;
 
 		dispatch({
 			type: ADD_MENU_ITEM,
-			payload: items
+			payload: data
+		})
+
+		dispatch({
+			type: SET_ITEM_FORM_VISIBILITY,
+			payload: false
 		})
 	} catch(error) {
 		console.log(error)

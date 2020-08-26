@@ -55,6 +55,7 @@ const Menu = ({
 				<Col md={{span: 6, offset: 3}} className='fixed-top bg-light h-100'>
 					<MenuItemForm 
 						items={items}
+						restaurant={restaurant.id}
 						addItem={addItem}
 						setItemFormVisibility={setItemFormVisibility}/>
 				</Col>
