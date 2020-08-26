@@ -74,11 +74,12 @@ const Dashboard = ({
 						url={url}
 						userSignOut={userSignOut}
 						history={history}
+						restaurant={restaurant}
 						dashNavVisible={dashNavVisible}
 						setDashNavVisible={setDashNavVisible}
 					/>
 				</CSSTransition>
-				<Col md={3} className='bg-light h-100'>
+				<Col md={3} className='bg-light vh-100 position-absolute'>
 					<FontAwesomeIcon
 					 icon={['fas','bars']}
 					 onClick={()=>{setDashNavVisible(true)}}

@@ -50,14 +50,21 @@ const Menu = ({
 			<Col md={{span: 9, offset: 3}}>
 				<Row>
 					{items.length > 0 && items.map(item=> {
+						
+						const { id, image, name, price } = item;
+							
 						return (
-							<Col md={3} key={item.id}>
+							
+							<Col md={3} key={id}>
 								<Card>
-									<Card.Img variant='top' src={item.image.url} />
+									<Card.Img variant='top' src={image.url} />
 									<Card.Body>
 										<Card.Header>
-											{item.name}			
+											{name}			
 										</Card.Header>
+										<Card.Footer>
+											{price}
+										</Card.Footer>
 									</Card.Body>
 								</Card>
 								

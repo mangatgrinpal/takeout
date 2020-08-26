@@ -4,22 +4,30 @@ import { Link } from 'react-router-dom';
 
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 
 const DashboardNav = ({
 	url,
 	userSignOut,
 	history,
 	dashNavVisible,
-	setDashNavVisible
+	setDashNavVisible,
+	restaurant
 }) => {
 
 	const handleClick = visibility => {
 		setDashNavVisible(visibility)
 	}
 
+	const { name, description, image } = restaurant;
 
 	return (
-		<Col md={3} className='fixed-top bg-light vh-100'>
+		<Col md={3} className='fixed-top bg-light' style={{overflow: 'hidden'}}>
+			<div className='w-100'>
+				<Image className='embed-responsive-item embed-responsive-1by1' src={image.url}/>
+			</div>
+			
+			<h6>{name}</h6>
 			<ul>
 				<li>
 					<Link 
