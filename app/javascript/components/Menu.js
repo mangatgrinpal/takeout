@@ -13,6 +13,7 @@ import MenuItemForm from './MenuItemForm';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 import { CSSTransition } from 'react-transition-group';
 
@@ -32,6 +33,7 @@ const Menu = ({
 
 	},[ restaurant ]);
 
+	console.log(items)
 	return (
 		<Fragment>
 			{items.length == 0 ? 
@@ -45,6 +47,27 @@ const Menu = ({
 				<Button onClick={()=>{setItemFormVisibility(true)}}>Add menu Item</Button>
 			</Col>
 			}
+			<Col md={{span: 9, offset: 3}}>
+				<Row>
+					{items.length > 0 && items.map(item=> {
+						return (
+							<Col md={3} key={item.id}>
+								<Card>
+									<Card.Img variant='top' src={item.image.url} />
+									<Card.Body>
+										<Card.Header>
+											{item.name}			
+										</Card.Header>
+									</Card.Body>
+								</Card>
+								
+							</Col>
+						)
+					})}
+				</Row>
+				
+			</Col>
+			
 
 			<CSSTransition
 				in={itemFormVisible}
