@@ -1,7 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-
-
-import axios from 'axios';
+import ImageUploader from './ImageUploader';
 
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -12,10 +10,26 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const MenuItemForm = () => {
+const MenuItemForm = ({
+	items,
+	setItemFormVisibility,
+	addItem
+}) => {
 
-	const [ nameData, setNameData ] = useState('')
-	const [ descriptionData, setDescriptionData ] = useState('')
+	const [ imageData, setImageData ] = useState([])
+
+
+	const [ item, setItem ] = useState({
+		name: '',
+		description: '',
+		price: ''
+	})
+
+	const handleInputChange = e => {
+		setItem({...item, [e.target.name]: e.target.value})
+	}
+
+	const { name, description, price } = item;
 
 	// const submitFormOnEnter = e => {
 	// 	if (e.key === 'Enter') {
@@ -92,7 +106,7 @@ const MenuItemForm = () => {
 	// 	document.getElementById('attributeField').classList.add('invalid-error-frame')
 	// }
 
-	// const validate = () => {
+	const validate = () => {
 	// 	// we'll define a function to validate the form
 	// 	const nameValid = nameData.length > 1 && nameData.length < 64
 	// 	const unitsValid = unitsData.length > 1 && unitsData.length < 64
@@ -119,74 +133,104 @@ const MenuItemForm = () => {
 	// 		return false
 	// 	}
 
-	// 	return true
+		return true
 
-	// }
+	}
 
 	// const handleSelect = e => {
 	// 	setCategoryError('')
 	// 	document.getElementById('categoryField').classList.remove('invalid-error-frame')
 	// }
 
-	// const handleSubmit = e => {
-	// 	e.preventDefault()
-	// 	setItemNameError('')
-	// 	setUnitsError('')
-	// 	setCategoryError('')
-	// 	setAttributesError('')
-	// 	document.getElementById('itemNameField').classList.remove('invalid-error-frame')
-	// 	document.getElementById('unitField').classList.remove('invalid-error-frame')
-	// 	document.getElementById('categoryField').classList.remove('invalid-error-frame')
+	const handleSubmit = e => {
+		e.preventDefault()
+		
+		const isValid = validate()
 
-	// 	const isValid = validate()
+		if (isValid) {
 
-	// 	if (isValid) {
-	// 		addItem(nameData, unitsData, categoryData, restaurant, attributesData)	
-	// 	}
+			const formData = new FormData();
+			formData.append('[item]name', name)
+			formData.append('[item]description', description)
+			formData.append('[item]image', imageData)
+			
+
+
+			addItem(formData)	
+		}
 		
 		
-	// }
+	}
+
+	
 
 	return (
 			<Container className='p-4'>
-				<h6 className='section-name pt-4 pt-md-0'>Add new item</h6>
+
+				<h6 className='section-name pt-4 pt-md-0'>
+					{items.length === 0 ? 
+						"You have no menu items yet. Let's get started." 
+						: "Add new item"
+					}
+				</h6>
 				<Form 
 					// onKeyPress={submitFormOnEnter} 
-					onSubmit={e=> {handleSubmit(e)}}
+					onSubmit={handleSubmit}
 					className='pt-5 pt-md-3'>
 					<Form.Row>
-						<Col xs={12}>
+						<Form.Label>
+							Image
+						</Form.Label>
+					</Form.Row>
+					<ImageUploader
+						imageData={imageData}
+						setImageData={setImageData} />
+					<Form.Row>
+						<Col xs={10}>
 							<Form.Label>
 								Item name
 							</Form.Label>
-							<Form.Control 
-								value={nameData}
-								onChange={(e)=> setNameData(e.target.value)}
+							<Form.Control
+								name='name' 
+								type='text'
+								placeholder='Enter menu item name'
+								value={name}
+								onChange={handleInputChange}
 								/>
 							{/*<span style={{'color':'red'}}>{nameError}</span>*/}
+						</Col>
+
+						<Col xs={2}>
+							<Form.Label className='align-right'>
+								Price
+							</Form.Label>
+							<Form.Control
+								 name='price'
+								 type='number'
+								 min='1'
+								 step='any'
+								 placeholder='$0.00'
+								 onChange={handleInputChange}
+								 value={price}
+								 />
 						</Col>
 					</Form.Row>
 					<Form.Row>
 						<Col xs={12}>
 							<Form.Label>
-								Size per unit
+								Item description
 							</Form.Label>
 							<Form.Control
-								value={descriptionData}
-								onChange={(e)=> setDescriptionData(e.target.value)}
+								name='description'
+								as='textarea'
+								placeholder='Write a short description of the item '
+								value={description}
+								onChange={handleInputChange}
 								/>
 							{/*<span style={{'color':'red'}}>{descriptionError}</span>*/}
 						</Col>
 					</Form.Row>
-					<Form.Row>
-						<Col xs={12}>
-							<Form.Label>
-								Prep category
-							</Form.Label>
-							<Form.Control
-								 />
-						</Col>
-					</Form.Row>
+
 
 					<Form.Row className='pt-2'>
 						<div className='ml-auto'>
@@ -195,7 +239,8 @@ const MenuItemForm = () => {
 							
 							<Button 
 								className='mr-1' 
-								variant='danger' 
+								variant='danger'
+								onClick={()=>{setItemFormVisibility(false)}} 
 							>
 								Cancel
 							</Button>

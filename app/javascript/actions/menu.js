@@ -57,18 +57,20 @@ export const fetchMenu = restaurant => async dispatch => {
 	}
 }
 
-export const addItem = (name, description) => async dispatch => {
+export const addItem = (item) => async dispatch => {
 
+	const currentUserCredentials = {
+		'access-token': await localStorage.getItem('access-token'),
+		'client': await localStorage.getItem('client'),
+		'uid': await localStorage.getItem('uid')
+	}
 
 	try {
-		const res = await axios.post('/items', {
-
-			item: {
-				name: name,
-				description: description
-			}
+		const res = await axios.post('/items', item,{
+			headers: currentUserCredentials
 		});
 
+		debugger
 		const { data: { items }} = res;
 
 		dispatch({

@@ -25,13 +25,13 @@ const MultiStepRestaurantForm = ({
 	};
 
 	const [ restaurant, setRestaurant ] = useState({
-		name:'name',
-		description: 'description',
-		address1: '1234 fake street',
+		name:'',
+		description: '',
+		address1: '',
 		address2: '',
-		city: 'San Jose',
-		state: 'CA',
-		zipCode: '90365'
+		city: '',
+		state: '',
+		zipCode: ''
 	});
 
 	const [ imageData, setImageData ] = useState([])

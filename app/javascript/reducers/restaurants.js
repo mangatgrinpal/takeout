@@ -10,7 +10,7 @@ import {
 const initialState = {
 	restaurant: [],
 	isFetching: true,
-	restaurantFormVisible: false
+	restaurantFormVisible: true
 }
 
 export default function(state = initialState, action) {

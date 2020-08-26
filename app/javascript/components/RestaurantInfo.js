@@ -13,6 +13,7 @@ const RestaurantInfo = ({
 	previous
 }) => {
 
+	const { name, description } = restaurant;
 
 	return (
 		<Container>
@@ -31,7 +32,7 @@ const RestaurantInfo = ({
 			      	type='text' 
 			      	placeholder='Enter name'
 			      	onChange={handleInputChange}
-			      	value={restaurant.name} />
+			      	value={name} />
 			    </Form.Group>
 			  </Form.Row> 
 
@@ -43,7 +44,7 @@ const RestaurantInfo = ({
 			      	as='textarea' 
 			      	placeholder='Write a short description about your restaurant and what kind of cuisine customers can expect'
 			      	onChange={handleInputChange}
-			      	value={restaurant.description} />
+			      	value={description} />
 			    </Form.Group>
 			  </Form.Row>
 			  <Button onClick={previous}>Previous</Button>

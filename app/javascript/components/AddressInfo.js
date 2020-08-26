@@ -13,6 +13,9 @@ const AddressInfo = ({
 	previous,
 	next
 }) => {
+
+	const { address1, address2, city, state, zipCode } = restaurant
+
 	return (
 		<Fragment>
 			<Row>
@@ -27,7 +30,7 @@ const AddressInfo = ({
 					name='address1' 
 					placeholder='1234 Main St'
 					onChange={handleInputChange}
-					value={restaurant.address1} />
+					value={address1} />
 				</Form.Group>
 
 				<Form.Group controlId='formGridAddress2'>
@@ -36,7 +39,7 @@ const AddressInfo = ({
 					name='address2' 
 					placeholder='Apartment, studio, or floor'
 					onChange={handleInputChange}
-					value={restaurant.address2} />
+					value={address2} />
 				</Form.Group>
 
 				<Form.Row>
@@ -45,7 +48,7 @@ const AddressInfo = ({
 						<Form.Control 
 						name='city'
 						onChange={handleInputChange}
-						value={restaurant.city} />
+						value={city} />
 					</Form.Group>
 
 					<Form.Group as={Col} controlId='formGridState'>
@@ -54,7 +57,7 @@ const AddressInfo = ({
 						name='state' 
 						as='select' 
 						onChange={handleInputChange}
-						value={restaurant.state}>
+						value={state}>
 							<option>Choose...</option>
 							<option>...</option>
 						</Form.Control>
@@ -65,7 +68,7 @@ const AddressInfo = ({
 						<Form.Control 
 						name='zipCode'
 						onChange={handleInputChange}
-						value={restaurant.zipCode} />
+						value={zipCode} />
 					</Form.Group>
 				</Form.Row>
 				<Button onClick={previous}>Previous</Button>
