@@ -47,7 +47,7 @@ const Dashboard = ({
 
 	useEffect(()=>{
 		
-		fetchRestaurant()
+		fetchRestaurant(currentUser.id)
 
 	},[]);
 

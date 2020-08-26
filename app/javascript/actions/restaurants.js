@@ -5,6 +5,9 @@ import {
 	ADD_RESTAURANT_REQUEST,
 	ADD_RESTAURANT_SUCCESS,
 	ADD_RESTAURANT_FAILURE,
+	FETCH_RESTAURANT_LIST_REQUEST,
+	FETCH_RESTAURANT_LIST_SUCCESS,
+	FETCH_RESTAURANT_LIST_FAILURE,
 	SET_RESTAURANT_FORM_VISIBILITY
 } from './types';
 
@@ -15,7 +18,7 @@ import {
 
 import axios from 'axios';
 
-export const fetchRestaurant = history => async dispatch => {
+export const fetchRestaurant = (user, history) => async dispatch => {
 
 	dispatch({
 		type: FETCH_RESTAURANT_REQUEST
@@ -29,7 +32,7 @@ export const fetchRestaurant = history => async dispatch => {
 
 	try {
 
-		const res = await axios.get(`/restaurants`, {
+		const res = await axios.get(`/restaurants/${user}`, {
 			headers: currentUserCredentials
 		});
 
@@ -95,7 +98,35 @@ export const addRestaurant = (restaurant, history) => async dispatch => {
 }
 
 export const fetchRestaurantList = () => async dispatch => {
+	
+	dispatch({
+		type: FETCH_RESTAURANT_LIST_REQUEST
+	})
 
+	const currentUserCredentials = {
+		'access-token': await localStorage.getItem('access-token'),
+		'client': await localStorage.getItem('client'),
+		'uid': await localStorage.getItem('uid')
+	}
+
+	try {
+		const res = await axios.get('/restaurants')
+
+		setAuthHeaders(res.headers)
+		persistAuthHeadersInDeviceStorage(res.headers)
+
+		const { data } = res;
+
+
+		dispatch({
+			type: FETCH_RESTAURANT_LIST_SUCCESS,
+			payload: data
+		})
+	} catch(error) {
+		console.log(error)
+
+
+	}
 }
 
 export const setRestaurantFormVisibility = visibility => dispatch => {

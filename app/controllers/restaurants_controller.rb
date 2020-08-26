@@ -1,9 +1,19 @@
 class RestaurantsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_user!, only: [:show, :create]
 
 
 	def index
-		@restaurant = current_user.restaurant
+		@restaurants = Restaurant.all
+
+		if @restaurants
+			render json: @restaurants, status: 200
+		else
+			render json: {}, status: 404
+		end
+	end
+
+	def show
+		@restaurant = Restaurant.where(user_id: params[:id]).first
 		if @restaurant
 			render json: @restaurant, status: 201
 		else
@@ -25,6 +35,8 @@ class RestaurantsController < ApplicationController
 			render json: @restaurant.errors.messages, status: 400
 		end
 	end
+
+	
 
 	def destroy
 	end
