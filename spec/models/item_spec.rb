@@ -5,7 +5,8 @@ RSpec.describe Item, type: :model do
 	subject {
 		described_class.new(
 			name: "Chicken",
-			description: "This chicken good"
+			description: "This chicken good",
+			price: 10.00
 		)
 	}
 
@@ -20,6 +21,11 @@ RSpec.describe Item, type: :model do
 
 	it "is not valid without a description" do
 		subject.description = nil
+		expect(subject).to_not be_valid
+	end
+
+	it "is not valid without a price" do
+		subject.price = nil
 		expect(subject).to_not be_valid
 	end
 end

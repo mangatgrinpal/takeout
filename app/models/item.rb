@@ -3,4 +3,5 @@ class Item < ApplicationRecord
 	validates_presence_of :name, :description, :price
 
 	has_one :menu_item
+	has_many :order_items
 end
