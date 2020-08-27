@@ -12,6 +12,7 @@ import Navigation from './Navigation';
 import Home from './Home';
 import Dashboard from './Dashboard';
 import RestaurantList from './RestaurantList';
+import Menu from './Menu';
 import UserSignUp from './UserSignUp';
 import UserSignIn from './UserSignIn';
 import PrivateRouteWrapper from './PrivateRouteWrapper';
@@ -42,6 +43,7 @@ const App = () => {
 
 					<PublicRoute exact path='/' component={Home} />
 					<PublicRoute exact path='/restaurant-list' component={RestaurantList} />
+					<PublicRoute exact path='/menu/:restaurantId' component={Menu}/>
 					<PublicRoute exact path='/sign-up' component={UserSignUp} />
 					<PublicRoute exact path='/sign-in' component={UserSignIn} />
 				</Switch>

@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_user!, except: :index
 
 	def index
-		@items = Restaurant.where(id:params[:restaurant]).first.items
+		
+		@items = Restaurant.where(id:params[:restaurant]|| params[:restaurantId]).first.items
 
 
 		if @items

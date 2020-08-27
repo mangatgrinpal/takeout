@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DashboardNav from './DashboardNav';
-import Orders from './Orders';
+import OrderList from './OrderList';
 import Menu from './Menu';
 import MenuItemForm from './MenuItemForm';
 
@@ -35,7 +35,7 @@ const Dashboard = ({
 	userSignOut,
 	fetchRestaurant,
 	addRestaurant,
-	users: { currentUser },
+	users: { currentUser, isAuthenticated },
 	restaurants: { restaurantFormVisible, restaurant }
 }) => {
 
@@ -109,10 +109,12 @@ const Dashboard = ({
 				
 				</Route>
 				<Route exact path={`${path}/orders`}>
-					<Orders />
+					<OrderList />
 				</Route>
 				<Route exact path={`${path}/menu`}>
-					<Menu restaurant={restaurant}/>
+					<Menu 
+						restaurant={restaurant}
+						isAuthenticated={isAuthenticated}/>
 				</Route>
 
 			</Switch>

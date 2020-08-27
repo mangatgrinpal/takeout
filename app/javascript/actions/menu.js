@@ -29,9 +29,8 @@ export const fetchMenu = restaurant => async dispatch => {
 
 	try {
 
-		let stringified = JSON.stringify(restaurant)
 
-		const res = await axios.get(`/items?restaurant=${stringified}`, { 
+		const res = await axios.get(`/items?restaurant=${restaurant}`, { 
 			headers: currentUserCredentials
 		});
 

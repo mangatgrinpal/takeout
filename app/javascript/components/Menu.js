@@ -8,6 +8,8 @@ import {
 	addItem 
 } from '../actions/menu';
 
+import { useParams } from 'react-router-dom';
+
 import MenuItemForm from './MenuItemForm';
 
 import Row from 'react-bootstrap/Row';
@@ -22,13 +24,16 @@ const Menu = ({
 	restaurant,
 	setItemFormVisibility,
 	addItem,
+	isAuthenticated,
 	menu: { items, itemFormVisible }
 }) => {
+
+	const { restaurantId } = useParams();
 
 
 	useEffect(()=>{
 
-		restaurant.id ? fetchMenu(restaurant.id) : null
+		restaurant ? fetchMenu(JSON.stringify(restaurant.id)) : fetchMenu(restaurantId)
 
 
 	},[ restaurant ]);
@@ -36,6 +41,8 @@ const Menu = ({
 
 	return (
 		<Fragment>
+		{isAuthenticated &&
+			<div>
 			{items.length == 0 ? 
 				<Col md={{span: 9, offset: 3}}>
 				<p>You don't have any items yet</p>
@@ -47,6 +54,9 @@ const Menu = ({
 				<Button onClick={()=>{setItemFormVisibility(true)}}>Add menu Item</Button>
 			</Col>
 			}
+</div>
+		}
+			
 			<Col md={{span: 9, offset: 3}}>
 				<Row>
 					{items.length > 0 && items.map(item=> {
@@ -85,7 +95,7 @@ const Menu = ({
 				<Col md={{span: 6, offset: 3}} className='fixed-top bg-light h-100'>
 					<MenuItemForm 
 						items={items}
-						restaurant={restaurant.id}
+						restaurant={restaurant ? restaurant.id : ''}
 						addItem={addItem}
 						setItemFormVisibility={setItemFormVisibility}/>
 				</Col>

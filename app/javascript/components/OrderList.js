@@ -2,7 +2,7 @@ import React from 'react';
 
 import Col from 'react-bootstrap/Col';
 
-const Orders = () => {
+const OrderList = () => {
 
 	return (
 		<Col md={{span: 9, offset: 3}}>
@@ -11,4 +11,4 @@ const Orders = () => {
 	)	
 }
 
-export default Orders
+export default OrderList
