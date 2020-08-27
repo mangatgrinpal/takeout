@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DashboardNav from './DashboardNav';
 import OrderList from './OrderList';
-import Menu from './Menu';
+import Inventory from './Inventory';
 import MenuItemForm from './MenuItemForm';
 
 import MultiStepRestaurantForm from './MultiStepRestaurantForm';
@@ -112,9 +112,8 @@ const Dashboard = ({
 					<OrderList />
 				</Route>
 				<Route exact path={`${path}/menu`}>
-					<Menu 
-						restaurant={restaurant}
-						isAuthenticated={isAuthenticated}/>
+					<Inventory 
+						restaurant={restaurant} />
 				</Route>
 
 			</Switch>

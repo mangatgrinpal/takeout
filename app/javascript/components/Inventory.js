@@ -19,12 +19,11 @@ import Card from 'react-bootstrap/Card';
 
 import { CSSTransition } from 'react-transition-group';
 
-const Menu = ({
+const Inventory = ({
 	fetchMenu,
 	restaurant,
 	setItemFormVisibility,
 	addItem,
-	isAuthenticated,
 	menu: { items, itemFormVisible }
 }) => {
 
@@ -32,8 +31,8 @@ const Menu = ({
 
 
 	useEffect(()=>{
-
-		restaurant ? fetchMenu(JSON.stringify(restaurant.id)) : fetchMenu(restaurantId)
+		let stringified = JSON.stringify(restaurant.id)
+		restaurant ? fetchMenu(stringified) : ''
 
 
 	},[ restaurant ]);
@@ -41,8 +40,8 @@ const Menu = ({
 
 	return (
 		<Fragment>
-		{isAuthenticated &&
-			<div>
+
+
 			{items.length == 0 ? 
 				<Col md={{span: 9, offset: 3}}>
 				<p>You don't have any items yet</p>
@@ -54,8 +53,6 @@ const Menu = ({
 				<Button onClick={()=>{setItemFormVisibility(true)}}>Add menu Item</Button>
 			</Col>
 			}
-</div>
-		}
 				
 			<Col md={{span: 9, offset: 3}}>
 				<Row>
@@ -120,5 +117,5 @@ export default connect(
 		setItemFormVisibility,
 		addItem
 	}
-)(Menu)
+)(Inventory)
 

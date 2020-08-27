@@ -57,8 +57,7 @@ const RestaurantList = ({
 											<br/>
 											{street_address_2}
 											<br/>
-											{city}, {state}
-											{zip_code}
+											{city}, {state} {zip_code}
 										</Card.Body>
 										<Card.Footer>
 											<Link 
