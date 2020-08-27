@@ -65,7 +65,7 @@ const ReviewForm = ({
 
 
 	return (
-		<Container>
+		<Container className='position-absolute'>
 			<Row>
 				<Col>
 					<h3>Confirm details</h3>

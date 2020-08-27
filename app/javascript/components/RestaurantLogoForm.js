@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 
 import ImageUploader from './ImageUploader';
 
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -18,7 +19,7 @@ const RestaurantLogoForm = ({
 		return imageData.length == 0
 	}
 	return (
-		<Fragment>
+		<Container className='position-absolute'>
 			<Row>
 				<Col>
 					<h3>Please add your restaurant's logo below</h3>
@@ -29,7 +30,7 @@ const RestaurantLogoForm = ({
 				setImageData={setImageData}/>
 			<Button onClick={previous}>Previous</Button>
 			<Button onClick={next}>Next</Button>
-		</Fragment>
+		</Container>
 
 	)
 

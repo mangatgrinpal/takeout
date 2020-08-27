@@ -8,7 +8,7 @@ const Welcome = ({
 	next
 }) => {
 	return (
-		<Container>
+		<Container className='position-absolute'>
 			<h1>Welcome</h1>
 			<Button onClick={next}>Get started</Button>
 		</Container>

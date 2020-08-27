@@ -24,10 +24,10 @@ const DashboardNav = ({
 	return (
 		<Col md={3} className='fixed-top bg-light' style={{overflow: 'hidden'}}>
 			<div className='w-100'>
-				<Image className='embed-responsive-item embed-responsive-1by1' src={image.url}/>
+				<Image className='embed-responsive-item embed-responsive-1by1' src={image ? image.url : ''}/>
 			</div>
 			
-			<h6>{name}</h6>
+			<h6>{name ? name : ''}</h6>
 			<ul>
 				<li>
 					<Link 

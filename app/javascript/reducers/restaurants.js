@@ -23,11 +23,13 @@ export default function(state = initialState, action) {
 	switch(type) {
 		case FETCH_RESTAURANT_REQUEST:
 		case FETCH_RESTAURANT_LIST_REQUEST:
+		case ADD_RESTAURANT_REQUEST:
 			return {
 				...state,
 				isFetching: true
 			};
 		case FETCH_RESTAURANT_SUCCESS:
+		case ADD_RESTAURANT_SUCCESS:
 			return {
 				...state,
 				restaurant: payload,

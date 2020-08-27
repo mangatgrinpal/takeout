@@ -16,7 +16,7 @@ const RestaurantInfo = ({
 	const { name, description } = restaurant;
 
 	return (
-		<Container>
+		<Container className='position-absolute'>
 			<Row>
 				<Col>
 					<h3>Tell us about your restaurant</h3>

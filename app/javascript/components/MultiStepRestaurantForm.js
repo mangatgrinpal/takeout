@@ -30,7 +30,7 @@ const MultiStepRestaurantForm = ({
 		address1: '',
 		address2: '',
 		city: '',
-		state: '',
+		state: 'CA',
 		zipCode: ''
 	});
 
