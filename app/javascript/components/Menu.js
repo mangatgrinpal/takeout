@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 
+import MenuItemView from './MenuItemView';
 import { connect } from 'react-redux';
 
 import { 
@@ -8,9 +9,12 @@ import {
 	addItem 
 } from '../actions/menu';
 
-import { useParams } from 'react-router-dom';
-
-import MenuItemForm from './MenuItemForm';
+import { 
+	Link, 
+	useParams, 
+	useLocation,
+	Route 
+} from 'react-router-dom';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -25,42 +29,28 @@ const Menu = ({
 	setItemFormVisibility,
 	addItem,
 	isAuthenticated,
+	background,
 	menu: { items, itemFormVisible }
 }) => {
 
 	const { restaurantId } = useParams();
+	const location = useLocation();
+
+
+
 
 
 	useEffect(()=>{
 
-		restaurant ? fetchMenu(JSON.stringify(restaurant.id)) : fetchMenu(restaurantId)
-
+		fetchMenu(restaurantId)
 
 	},[ restaurant ]);
 
+	console.log(background)
 
 	return (
-		<Fragment>
-		{isAuthenticated &&
-			<div>
-			{items.length == 0 ? 
-				<Col md={{span: 9, offset: 3}}>
-				<p>You don't have any items yet</p>
-				<Button onClick={()=>{setItemFormVisibility(true)}}>Add menu Item</Button>
-			</Col>
-				:
-				<Col md={{span: 9, offset: 3}}>
-				<p>Menu page foo</p>
-				<Button onClick={()=>{setItemFormVisibility(true)}}>Add menu Item</Button>
-			</Col>
-			}
-</div>
-		}
-				
+		<Fragment>		
 			<Col md={{span: 9, offset: 3}}>
-				<Row>
-
-				</Row>
 				<Row>
 					{items.length > 0 && items.map(item=> {
 						
@@ -69,41 +59,34 @@ const Menu = ({
 						return (
 							
 							<Col md={3} key={id}>
-								<Card>
-									<Card.Img variant='top' src={image.url} />
-									<Card.Body>
-										<Card.Header>
-											{name}			
-										</Card.Header>
-										<Card.Footer>
-											{price}
-										</Card.Footer>
-									</Card.Body>
-								</Card>
+								<Link 
+									to={{
+										pathname: `${restaurantId}/menu-item/${id}`,
+										state: { background: location }
+									}}
+								>
+									<Card>
+										<Card.Img variant='top' src={image.url} />
+										<Card.Body>
+											<Card.Header>
+												{name}			
+											</Card.Header>
+											<Card.Footer>
+												{price}
+											</Card.Footer>
+										</Card.Body>
+									</Card>
+								</Link>
 								
 							</Col>
 						)
 					})}
 				</Row>
+
 				
 			</Col>
 			
-
-			<CSSTransition
-				in={itemFormVisible}
-				timeout={600}
-				unmountOnExit
-				classNames='complete-fade'
-			>
-				<Col md={{span: 6, offset: 3}} className='fixed-top bg-light h-100'>
-					<MenuItemForm 
-						items={items}
-						restaurant={restaurant ? restaurant.id : ''}
-						addItem={addItem}
-						setItemFormVisibility={setItemFormVisibility}/>
-				</Col>
-			</CSSTransition>
-
+			
 		</Fragment>
 	)
 }
