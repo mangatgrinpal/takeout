@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 
-import MenuItemView from './MenuItemView';
 import { connect } from 'react-redux';
 
 import { 
@@ -37,28 +36,33 @@ const Menu = ({
 	const location = useLocation();
 
 
-
-
-
 	useEffect(()=>{
 
 		fetchMenu(restaurantId)
 
 	},[ restaurant ]);
 
-	console.log(background)
+
 
 	return (
-		<Fragment>		
-			<Col md={{span: 9, offset: 3}}>
+		<Fragment>
+
+				<Col>
+					<Link to='/restaurant-list' className='btn btn-primary'>
+						go back
+					</Link>
+
+				</Col>
+
+			<Col>
 				<Row>
-					{items.length > 0 && items.map(item=> {
+					{items.length > 0 ? items.map(item=> {
 						
 						const { id, image, name, price } = item;
 							
 						return (
 							
-							<Col md={3} key={id}>
+							<Col md={2} key={id}>
 								<Link 
 									to={{
 										pathname: `${restaurantId}/menu-item/${id}`,
@@ -80,7 +84,13 @@ const Menu = ({
 								
 							</Col>
 						)
-					})}
+					})
+
+					:
+					<Col>
+						<h1 className='text-center'>This restaurant doesnt have a menu yet</h1>
+					</Col>
+				}
 				</Row>
 
 				

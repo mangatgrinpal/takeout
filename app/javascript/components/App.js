@@ -23,7 +23,6 @@ const App = () => {
 		<Provider store={store}>
 			<Router>
 				<SwitchWrapper />
-				
 			</Router>			
 		</Provider>
 		

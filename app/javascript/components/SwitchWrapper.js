@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 
 import Navigation from './Navigation';
 import Home from './Home';
@@ -24,7 +24,32 @@ const SwitchWrapper = () => {
 
 	const location = useLocation();
 
-	const background = location.state && location.state.background
+	const background = (location.state && location.state.background)
+
+
+	// const [background, setBackground] = (location.state && location.state.background)
+
+
+
+	// console.log(`location.state.background =${location.state.background}`)
+
+	// useEffect(()=> {
+	// 	getBackgroundData()
+
+	// 	return persistBackgroundData(background)
+	// },[])
+
+	// const persistBackgroundData = (data) =>{
+	// 	localStorage.setItem('backgroundData', data)
+
+	// }
+
+	// const getBackgroundData = () => {
+	// 	const backgroundData = localStorage.getItem('backgroundData') || ''
+
+
+
+	// }
 
 	return (
 		<Fragment>
@@ -37,6 +62,7 @@ const SwitchWrapper = () => {
 				<PublicRoute exact path='/' component={Home} />
 				<PublicRoute exact path='/restaurant-list' component={RestaurantList} />
 				<Route exact path='/menu/:restaurantId' children={<Menu background={background}/>}/>
+				<Route exact path ='/menu/:restaurantId/menu-item/:id' children={<MenuItemView />}/>
 				<PublicRoute exact path='/sign-up' component={UserSignUp} />
 				<PublicRoute exact path='/sign-in' component={UserSignIn} />
 
