@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { connect } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
 
-const Order = () => {
+const Order = ({
+	orders: { bag }
+}) => {
 
-	let { restaurantId } = useParams();
-
-	console.log(restaurantId)
+	console.log(bag)
 
 	return (
 		<h1> Order Details</h1>
 	)
 }
 
-export default Order
+const mapStateToProps = state => ({
+	orders: state.orders
+})
+
+export default connect(
+	mapStateToProps
+)(Order)

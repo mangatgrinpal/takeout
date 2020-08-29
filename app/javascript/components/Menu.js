@@ -5,8 +5,11 @@ import { connect } from 'react-redux';
 import { 
 	fetchMenu, 
 	setItemFormVisibility, 
-	addItem 
+	addItem,
+	setItemModalVisibility
 } from '../actions/menu';
+
+import { fetchRestaurantList } from '../actions/restaurants';
 
 import { 
 	Link, 
@@ -22,14 +25,19 @@ import Card from 'react-bootstrap/Card';
 
 import { CSSTransition } from 'react-transition-group';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const Menu = ({
 	fetchMenu,
 	restaurant,
 	setItemFormVisibility,
+	setItemModalVisibility,
 	addItem,
 	isAuthenticated,
 	background,
-	menu: { items, itemFormVisible }
+	fetchRestaurantList,
+	menu: { items, itemFormVisible },
+	restaurants: { restaurantList }
 }) => {
 
 	const { restaurantId } = useParams();
@@ -40,21 +48,39 @@ const Menu = ({
 
 		fetchMenu(restaurantId)
 
+		restaurantList.length == 0 ? fetchRestaurantList() : null
+
 	},[ restaurant ]);
+
+	const currentRestaurant = restaurantList ? restaurantList.filter(restaurant => restaurant.id == restaurantId) : null
 
 
 
 	return (
 		<Fragment>
 
-				<Col>
-					<Link to='/restaurant-list' className='btn btn-primary'>
-						go back
-					</Link>
-
-				</Col>
+			<Col>
+				<Row className='justify-content-around'>
+					<Col>
+						<Link to='/restaurant-list' className='btn btn-primary'>
+							go back
+						</Link>
+					</Col>
+					<Col md={2}>
+						<Link className='text-right' to='/checkout'>
+							<FontAwesomeIcon 
+								icon={['fas','shopping-cart']}
+								onClick={()=>{console.log('hi')}}
+								size='2x'/>
+						</Link>
+					</Col>
+				</Row>
+			</Col>
 
 			<Col>
+				<Row>
+					<Col>Menu for restaurant</Col>
+				</Row>
 				<Row>
 					{items.length > 0 ? items.map(item=> {
 						
@@ -63,7 +89,10 @@ const Menu = ({
 						return (
 							
 							<Col md={2} key={id}>
-								<Link 
+								<Link
+									onClick={()=>{
+										setItemModalVisibility(true)
+									}} 
 									to={{
 										pathname: `${restaurantId}/menu-item/${id}`,
 										state: { background: location }
@@ -103,7 +132,8 @@ const Menu = ({
 
 
 const mapStateToProps = state => ({
-	menu: state.menu
+	menu: state.menu,
+	restaurants: state.restaurants
 })
 
 export default connect(
@@ -111,7 +141,9 @@ export default connect(
 	{
 		fetchMenu,
 		setItemFormVisibility,
-		addItem
+		setItemModalVisibility,
+		addItem,
+		fetchRestaurantList
 	}
 )(Menu)
 

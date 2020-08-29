@@ -10,6 +10,7 @@ import UserSignIn from './UserSignIn';
 import PrivateRouteWrapper from './PrivateRouteWrapper';
 import PublicRoute from './PublicRoute';
 import MenuItemView from './MenuItemView';
+import Order from './Order';
 
 import { 
 	BrowserRouter as Router,
@@ -65,6 +66,7 @@ const SwitchWrapper = () => {
 				<Route exact path ='/menu/:restaurantId/menu-item/:id' children={<MenuItemView />}/>
 				<PublicRoute exact path='/sign-up' component={UserSignUp} />
 				<PublicRoute exact path='/sign-in' component={UserSignIn} />
+				<Route exact path='/checkout' component={Order}/>
 
 
 			</Switch>

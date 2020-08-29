@@ -4,7 +4,8 @@ import {
 	FETCH_MENU_FAILURE,
 	ADD_MENU_ITEM,
 	DELETE_MENU_ITEM,
-	SET_ITEM_FORM_VISIBILITY
+	SET_ITEM_FORM_VISIBILITY,
+	SET_ITEM_MODAL_VISIBILITY
 } from './types';
 
 import {
@@ -108,6 +109,14 @@ export const deleteMenuItem = (item) => async dispatch => {
 export const setItemFormVisibility = visibility => dispatch => {
 	dispatch({
 		type: SET_ITEM_FORM_VISIBILITY,
+		payload: visibility
+	})
+}
+
+
+export const setItemModalVisibility = visibility => dispatch => {
+	dispatch({
+		type: SET_ITEM_MODAL_VISIBILITY,
 		payload: visibility
 	})
 }

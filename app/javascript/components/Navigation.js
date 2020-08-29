@@ -8,7 +8,7 @@ const Navigation = () => {
 
 	const location = useLocation();
 
-	console.log(location.pathname)
+
 	return (
 		<Navbar>
 			<ul>

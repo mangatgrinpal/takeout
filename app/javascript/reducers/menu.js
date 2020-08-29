@@ -4,13 +4,15 @@ import {
 	FETCH_MENU_FAILURE,
 	ADD_MENU_ITEM,
 	DELETE_MENU_ITEM,
-	SET_ITEM_FORM_VISIBILITY
+	SET_ITEM_FORM_VISIBILITY,
+	SET_ITEM_MODAL_VISIBILITY
 } from '../actions/types';
 
 const initialState = {
 	items: [],
 	isFetching: true,
-	itemFormVisible: false
+	itemFormVisible: false,
+	itemModalVisible: true
 }
 
 export default function(state = initialState, action) {
@@ -43,6 +45,11 @@ export default function(state = initialState, action) {
 				...state,
 				itemFormVisible: payload
 			};
+		case SET_ITEM_MODAL_VISIBILITY:
+			return {
+				...state,
+				itemModalVisible: payload
+			}
 		default:
 			return state
 	}
