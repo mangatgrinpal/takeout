@@ -29,7 +29,12 @@ export const addItemToOrder = (item) => dispatch => {
 
 }
 
-export const removeItemFromOrder = ()=> dispatch => {
+export const removeItemFromOrder = item => dispatch => {
+
+	dispatch({
+		type: REMOVE_ITEM_FROM_ORDER,
+		payload: item
+	})
 
 }
 

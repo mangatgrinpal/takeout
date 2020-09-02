@@ -22,6 +22,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 
 import { CSSTransition } from 'react-transition-group';
 
@@ -37,7 +38,8 @@ const Menu = ({
 	background,
 	fetchRestaurantList,
 	menu: { items, itemFormVisible },
-	restaurants: { restaurantList }
+	restaurants: { restaurantList },
+	orders: { bag }
 }) => {
 
 	const { restaurantId } = useParams();
@@ -68,6 +70,9 @@ const Menu = ({
 					</Col>
 					<Col md={2}>
 						<Link className='text-right' to='/checkout'>
+							<Badge pill variant='success'>
+								{bag.length > 0 ? bag.length : ''}
+							</Badge>
 							<FontAwesomeIcon 
 								icon={['fas','shopping-cart']}
 								onClick={()=>{console.log('hi')}}
@@ -133,7 +138,8 @@ const Menu = ({
 
 const mapStateToProps = state => ({
 	menu: state.menu,
-	restaurants: state.restaurants
+	restaurants: state.restaurants,
+	orders: state.orders
 })
 
 export default connect(
