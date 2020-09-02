@@ -12,8 +12,9 @@ import SwitchWrapper from './SwitchWrapper';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { store } from '../store';
+import { store, persistor } from '../store';
 
 const App = () => {
 	
@@ -21,9 +22,11 @@ const App = () => {
 	
 	return (
 		<Provider store={store}>
-			<Router>
-				<SwitchWrapper />
-			</Router>			
+			<PersistGate loading={null} persistor={persistor}>
+				<Router>
+					<SwitchWrapper />
+				</Router>
+			</PersistGate>
 		</Provider>
 		
 	)

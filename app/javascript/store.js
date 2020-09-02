@@ -6,26 +6,30 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from './reducers';
 
-import { loadState, saveState } from './localStorage';
+import { persistStore, persistReducer } from 'redux-persist';
+
+import storage from 'redux-persist/lib/storage';
 
 
 
-const persistedState = loadState();
+const persistConfig = {
+	key: 'root',
+	storage,
+	whitelist: ['users', 'orders']
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = createStore(
-	rootReducer,
-	persistedState,
+	persistedReducer,
 	composeWithDevTools(
 		applyMiddleware(thunk)
 	)
 );
 
-store.subscribe(() => {
-	saveState({
-		users: store.getState().users
-	});
-});
+const persistor = persistStore(store)
 
 export {
-	store
+	store, 
+	persistor
 }
