@@ -1,6 +1,8 @@
 import {
 	ADD_ITEM_TO_ORDER,
 	REMOVE_ITEM_FROM_ORDER,
+	ADD_QUANTITY_TO_ORDER,
+	SUBTRACT_QUANTITY_FROM_ORDER,
 	SUBMIT_ORDER_REQUEST,
 	SUBMIT_ORDER_SUCCESS,
 	SUBMIT_ORDER_FAILURE,
@@ -15,6 +17,9 @@ import {
 import axios from 'axios';
 
 export const addItemToOrder = (item) => dispatch => {
+
+
+
 
 	dispatch({
 		type: ADD_ITEM_TO_ORDER,
@@ -36,6 +41,14 @@ export const removeItemFromOrder = item => dispatch => {
 		payload: item
 	})
 
+}
+
+export const addQuantityToOrder = quantity => dispatch => {
+
+}
+
+export const subtractQuantityFromOrder = quantity => dispatch => {
+	
 }
 
 export const submitOrder = () => dispatch => {

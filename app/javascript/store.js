@@ -29,6 +29,8 @@ const store = createStore(
 
 const persistor = persistStore(store)
 
+
+
 export {
 	store, 
 	persistor

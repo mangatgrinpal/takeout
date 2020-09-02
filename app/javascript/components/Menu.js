@@ -70,13 +70,13 @@ const Menu = ({
 					</Col>
 					<Col md={2}>
 						<Link className='text-right' to='/checkout'>
+							
+							<FontAwesomeIcon 
+								icon={['fas','shopping-bag']}
+								size='2x'/>
 							<Badge pill variant='success'>
 								{bag.length > 0 ? bag.length : ''}
 							</Badge>
-							<FontAwesomeIcon 
-								icon={['fas','shopping-cart']}
-								onClick={()=>{console.log('hi')}}
-								size='2x'/>
 						</Link>
 					</Col>
 				</Row>

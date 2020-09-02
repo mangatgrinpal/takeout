@@ -1,6 +1,8 @@
 import {
 	ADD_ITEM_TO_ORDER,
 	REMOVE_ITEM_FROM_ORDER,
+	ADD_QUANTITY_TO_ORDER,
+	SUBTRACT_QUANTITY_FROM_ORDER,
 	SUBMIT_ORDER_REQUEST,
 	SUBMIT_ORDER_SUCCESS,
 	SUBMIT_ORDER_FAILURE
@@ -8,7 +10,8 @@ import {
 
 const initialState = {
 	bag: [],
-	isLoading: true
+	isLoading: true,
+	total: 0.00
 }
 
 export default function(state = initialState, action) {
@@ -17,14 +20,36 @@ export default function(state = initialState, action) {
 
 	switch(type) {
 		case ADD_ITEM_TO_ORDER:
-			return {
-				...state,
-				bag: [...state.bag, payload]
+
+			let item = state.bag.find(item=> item.id === payload.id)
+			let price = Number(payload.price)
+			if (item) {
+				item.quantity += 1
+				return {
+					...state,
+					total: state.total + price
+				};
+			} else {
+				let newItem = payload
+				newItem.quantity = 1;
+				let newTotal = state.total + price
+				return {
+					...state,
+					bag: [...state.bag, newItem],
+					total: newTotal
+				};
 			};
 		case REMOVE_ITEM_FROM_ORDER:
+
+			let itemToRemove = payload
+
+			let updatedBag = state.bag.filter(item => item.id != payload.id)
+
+			let newTotal = state.total - (Number(itemToRemove.price) * itemToRemove.quantity)
 			return {
 				...state,
-				bag: payload
+				bag: updatedBag,
+				total: newTotal
 			};
 		default:
 			return state
