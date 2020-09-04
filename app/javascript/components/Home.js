@@ -1,4 +1,6 @@
 import React from 'react';
+import HeroImage from './HeroImage';
+
 
 import { Link } from 'react-router-dom';
 
@@ -10,7 +12,6 @@ const Home = () => {
 
 			<h1>Sup foo. This is Takeout.</h1>
 
-			
 			{/* nav bar will go here */}
 			{/* includes: home, view restaurants, sign in, sign up buttons */}
 			{/* where are the home and restaurant button's code located? */}
