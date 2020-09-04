@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 
 import { useParams, useHistory } from 'react-router-dom';
 
-import { removeItemFromOrder } from '../actions/orders';
+import { 
+	removeItemFromOrder,
+	addQuantityToOrder,
+	subtractQuantityFromOrder
+} from '../actions/orders';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -16,6 +20,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Order = ({
 	removeItemFromOrder,
+	addQuantityToOrder,
+	subtractQuantityFromOrder,
 	orders: { bag, total }
 }) => {
 
@@ -24,6 +30,16 @@ const Order = ({
 	const back = () => {
 		history.goBack();
 	}
+
+	const totalQuantity = () => {
+		
+		return bag.reduce(function (acc,obj) { return acc + obj.quantity; }, 0)
+
+	}
+
+
+
+
 
 	return (
 		<Container fluid>
@@ -38,7 +54,7 @@ const Order = ({
 						icon={['fas','shopping-bag']}
 						size='2x'/>
 					<Badge pill variant='success'>
-						{bag.length > 0 ? bag.length : ''}
+						{bag.length > 0 ? totalQuantity() : ''}
 					</Badge>
 				</Col>
 			</Row>
@@ -49,17 +65,28 @@ const Order = ({
 				</Col>
 			</Row>
 			<Row>
-				<Col md={9}>
+				<Col md={8}>
 					<h6>
 						View your order details on the right.
 						</h6>
 				</Col>
-				<Col md={{span: 3,offset: 0}}>
+				<Col md={{span: 4,offset: 0}}>
 					{bag.length > 0 ? bag.map(item=>{
 						return(
 							<Row key={item.id} className='border justify-content-around'>
+								<Col md={6}>
+									{item.name}&nbsp;x&nbsp;
+								</Col>
 								<Col>
-									{item.name}&nbsp;x&nbsp;{item.quantity}
+									<Button onClick={()=>{subtractQuantityFromOrder(item)}}>
+										-
+									</Button>
+									&nbsp;
+									{item.quantity}
+									&nbsp;
+									<Button onClick={()=>{addQuantityToOrder(item)}}>
+										+
+									</Button>
 								</Col>
 								<Col>
 									{item.price}&nbsp;
@@ -72,7 +99,7 @@ const Order = ({
 					}) : 'You have no items in your cart'}
 					<Row>
 						<Col>
-							Items subtotal: {total}
+							Items subtotal ({totalQuantity()} items): ${bag.length === 0 ? '' : total.toFixed(2)}
 						</Col>
 					</Row>
 				</Col>
@@ -90,6 +117,8 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	{
-		removeItemFromOrder
+		removeItemFromOrder,
+		addQuantityToOrder,
+		subtractQuantityFromOrder
 	}
 )(Order)

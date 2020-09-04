@@ -18,13 +18,9 @@ import axios from 'axios';
 
 export const addItemToOrder = (item) => dispatch => {
 
-
-
-
 	dispatch({
 		type: ADD_ITEM_TO_ORDER,
 		payload: item
-
 	})
 
 	dispatch({
@@ -43,12 +39,18 @@ export const removeItemFromOrder = item => dispatch => {
 
 }
 
-export const addQuantityToOrder = quantity => dispatch => {
-
+export const addQuantityToOrder = item => dispatch => {
+	dispatch({
+		type: ADD_QUANTITY_TO_ORDER,
+		payload: item
+	})
 }
 
-export const subtractQuantityFromOrder = quantity => dispatch => {
-	
+export const subtractQuantityFromOrder = item => dispatch => {
+	dispatch({
+		type: SUBTRACT_QUANTITY_FROM_ORDER,
+		payload: item
+	})
 }
 
 export const submitOrder = () => dispatch => {

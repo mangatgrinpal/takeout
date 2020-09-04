@@ -44,13 +44,55 @@ export default function(state = initialState, action) {
 			let itemToRemove = payload
 
 			let updatedBag = state.bag.filter(item => item.id != payload.id)
+			if (updatedBag.length === 0) {
+				return {
+					...state,
+					bag: [],
+					total: 0.00
+				}
+			}
 
-			let newTotal = state.total - (Number(itemToRemove.price) * itemToRemove.quantity)
+			let newTotalAfterSub = state.total - (Number(itemToRemove.price) * itemToRemove.quantity)
 			return {
 				...state,
 				bag: updatedBag,
-				total: newTotal
+				total: newTotalAfterSub
 			};
+		case ADD_QUANTITY_TO_ORDER:
+			let targetItem = state.bag.find(item=> item.id === payload.id)
+			targetItem.quantity += 1
+
+			let newTotalAfterAdd = state.total + Number(targetItem.price)
+
+			return {
+				...state,
+				total: newTotalAfterAdd
+			}
+
+		case SUBTRACT_QUANTITY_FROM_ORDER:
+			let selectedItem = state.bag.find(item=> item.id === payload.id)
+			if (selectedItem.quantity === 1) {
+				let newItems = state.bag.filter(item=> item.id != payload.id)
+				let newTotal = state.total - Number(selectedItem.price)
+
+				return {
+					...state,
+					bag: newItems,
+					total: newTotal
+				}
+
+			} else {
+				let item = payload
+				item.quantity -= 1
+				let newTotalAfterSub = state.total - Number(item.price)
+
+				return {
+					...state,
+					total: newTotalAfterSub
+				}
+			}
+
+
 		default:
 			return state
 	}

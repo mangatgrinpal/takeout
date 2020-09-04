@@ -56,6 +56,12 @@ const Menu = ({
 
 	const currentRestaurant = restaurantList ? restaurantList.filter(restaurant => restaurant.id == restaurantId) : null
 
+	const totalQuantity = () => {
+		
+		return bag.reduce(function (acc,obj) { return acc + obj.quantity; }, 0)
+
+	}
+
 
 
 	return (
@@ -75,7 +81,7 @@ const Menu = ({
 								icon={['fas','shopping-bag']}
 								size='2x'/>
 							<Badge pill variant='success'>
-								{bag.length > 0 ? bag.length : ''}
+								{bag.length > 0 ? totalQuantity() : ''}
 							</Badge>
 						</Link>
 					</Col>
