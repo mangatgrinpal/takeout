@@ -11,6 +11,7 @@ import PrivateRouteWrapper from './PrivateRouteWrapper';
 import PublicRoute from './PublicRoute';
 import MenuItemView from './MenuItemView';
 import Order from './Order';
+import Example from './Example';
 
 import { 
 	BrowserRouter as Router,
@@ -55,6 +56,7 @@ const SwitchWrapper = () => {
 	return (
 		<Fragment>
 			<Switch location={background || location}>
+
 
 				<PrivateRouteWrapper path='/dashboard'>
 					<Dashboard />

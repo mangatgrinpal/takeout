@@ -33,7 +33,7 @@ const Order = ({
 
 	const totalQuantity = () => {
 		
-		return bag.reduce(function (acc,obj) { return acc + obj.quantity; }, 0)
+		return bag.reduce((acc,obj) => { return acc + obj.quantity; }, 0)
 
 	}
 
@@ -65,11 +65,15 @@ const Order = ({
 				</Col>
 			</Row>
 			<Row>
+				{bag.length === 0 ? '' :
+
 				<Col md={8}>
-					<h6>
-						View your order details on the right.
-						</h6>
+					<h6>View your order details on the right.</h6>
+					<Button variant='success' size='lg' block>Place Your Order</Button>
 				</Col>
+
+			}
+				
 				<Col md={{span: 4,offset: 0}}>
 					{bag.length > 0 ? bag.map(item=>{
 						return(
@@ -99,7 +103,7 @@ const Order = ({
 					}) : 'You have no items in your cart'}
 					<Row>
 						<Col>
-							Items subtotal ({totalQuantity()} items): ${bag.length === 0 ? '' : total.toFixed(2)}
+							Items subtotal ({totalQuantity()} items): ${bag.length === 0 ? '0.00' : total.toFixed(2)}
 						</Col>
 					</Row>
 				</Col>

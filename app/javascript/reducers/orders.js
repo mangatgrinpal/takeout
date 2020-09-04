@@ -91,8 +91,6 @@ export default function(state = initialState, action) {
 					total: newTotalAfterSub
 				}
 			}
-
-
 		default:
 			return state
 	}
