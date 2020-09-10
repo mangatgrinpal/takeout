@@ -3,6 +3,7 @@ import {
 	REMOVE_ITEM_FROM_ORDER,
 	ADD_QUANTITY_TO_ORDER,
 	SUBTRACT_QUANTITY_FROM_ORDER,
+	CLEAR_ORDER,
 	SUBMIT_ORDER_REQUEST,
 	SUBMIT_ORDER_SUCCESS,
 	SUBMIT_ORDER_FAILURE,
@@ -50,6 +51,12 @@ export const subtractQuantityFromOrder = item => dispatch => {
 	dispatch({
 		type: SUBTRACT_QUANTITY_FROM_ORDER,
 		payload: item
+	})
+}
+
+export const clearOrder = () => dispatch => {
+	dispatch({
+		type: CLEAR_ORDER
 	})
 }
 

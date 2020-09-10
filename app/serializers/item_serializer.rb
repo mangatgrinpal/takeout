@@ -3,6 +3,10 @@ class ItemSerializer < ActiveModel::Serializer
 
   attributes :id, :name, :description, :image, :price
 
+  has_one :menu_item
+  has_one :restaurant, through: :menu_item
+
+
 
 
   def image

@@ -3,6 +3,7 @@ import {
 	REMOVE_ITEM_FROM_ORDER,
 	ADD_QUANTITY_TO_ORDER,
 	SUBTRACT_QUANTITY_FROM_ORDER,
+	CLEAR_ORDER,
 	SUBMIT_ORDER_REQUEST,
 	SUBMIT_ORDER_SUCCESS,
 	SUBMIT_ORDER_FAILURE
@@ -91,6 +92,11 @@ export default function(state = initialState, action) {
 					total: newTotalAfterSub
 				}
 			}
+		case CLEAR_ORDER:
+			return {
+				bag: [],
+				total: 0.00
+			};
 		default:
 			return state
 	}

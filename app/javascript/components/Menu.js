@@ -1,4 +1,6 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+
+import ConfirmationModal from './ConfirmationModal';
 
 import { connect } from 'react-redux';
 
@@ -8,6 +10,8 @@ import {
 	addItem,
 	setItemModalVisibility
 } from '../actions/menu';
+
+import { clearOrder } from '../actions/orders';
 
 import { fetchRestaurantList } from '../actions/restaurants';
 
@@ -37,6 +41,7 @@ const Menu = ({
 	isAuthenticated,
 	background,
 	fetchRestaurantList,
+	clearOrder,
 	menu: { items, itemFormVisible },
 	restaurants: { restaurantList },
 	orders: { bag }
@@ -45,6 +50,7 @@ const Menu = ({
 	const { restaurantId } = useParams();
 	const location = useLocation();
 
+	const [ showModal, setShowModal ] = useState(false);
 
 	useEffect(()=>{
 
@@ -64,15 +70,19 @@ const Menu = ({
 
 
 
+
+
 	return (
 		<Fragment>
 
 			<Col>
 				<Row className='justify-content-around'>
 					<Col>
-						<Link to='/restaurant-list' className='btn btn-primary'>
+						<Button 
+							className='btn btn-primary'
+							onClick={()=> setShowModal(true)}>
 							go back
-						</Link>
+						</Button>
 					</Col>
 					<Col md={2}>
 						<Link className='text-right' to='/checkout'>
@@ -133,7 +143,10 @@ const Menu = ({
 				}
 				</Row>
 
-				
+				<ConfirmationModal 
+					show={showModal}
+					clearOrder={clearOrder}
+					onHide={()=> setShowModal(false)}/>
 			</Col>
 			
 			
@@ -155,7 +168,8 @@ export default connect(
 		setItemFormVisibility,
 		setItemModalVisibility,
 		addItem,
-		fetchRestaurantList
+		fetchRestaurantList,
+		clearOrder
 	}
 )(Menu)
 

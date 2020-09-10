@@ -65,8 +65,8 @@ const CustomerInfoForm = ({
 					<Form.Label>Phone number (optional)</Form.Label>
 					<Form.Control 
 						name='phone_number'
-						type='email'
-						placeholder='Phone no.'
+						type='tel'
+						placeholder='(123)456-7890'
 						onChange={handleInputChange}
 						value={phone_number}/>
 				</Form.Group>
