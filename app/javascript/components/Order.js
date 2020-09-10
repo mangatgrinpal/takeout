@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import CustomerInfoForm from './CustomerInfoForm';
+
 import { connect } from 'react-redux';
 
 import { useParams, useHistory } from 'react-router-dom';
@@ -32,14 +34,8 @@ const Order = ({
 	}
 
 	const totalQuantity = () => {
-		
 		return bag.reduce((acc,obj) => { return acc + obj.quantity; }, 0)
-
 	}
-
-
-
-
 
 	return (
 		<Container fluid>
@@ -69,7 +65,15 @@ const Order = ({
 
 				<Col md={8}>
 					<h6>View your order details on the right.</h6>
-					<Button variant='success' size='lg' block>Place Your Order</Button>
+					<p>If everything is correct, please provide a name and email for your order.
+					</p>
+					<p>
+					You may also optionally include your phone number to make it easier for the 
+					business to contact you about any issues with your order.
+					</p>
+					<CustomerInfoForm 
+						bag={bag} 
+						total={total}/>
 				</Col>
 
 			}

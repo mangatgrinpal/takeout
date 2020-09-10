@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
 	belongs_to :restaurant
 
-	validates_presence_of :order_number
+	validates_presence_of :order_number, :order_price
 
 	has_one :customer
 	

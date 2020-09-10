@@ -59,10 +59,10 @@ export default function(state = initialState, action) {
 				total: newTotalAfterSub
 			};
 		case ADD_QUANTITY_TO_ORDER:
-			let targetItem = state.bag.find(item=> item.id === payload.id)
-			targetItem.quantity += 1
+			item = state.bag.find(item=> item.id === payload.id)
+			item.quantity += 1
 
-			let newTotalAfterAdd = state.total + Number(targetItem.price)
+			let newTotalAfterAdd = state.total + Number(item.price)
 
 			return {
 				...state,

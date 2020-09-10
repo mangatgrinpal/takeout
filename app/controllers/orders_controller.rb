@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+	before_create :generate_order_number
 	before_action :authenticate_user!, except: :create
 
 
