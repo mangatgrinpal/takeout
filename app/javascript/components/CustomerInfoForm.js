@@ -51,8 +51,8 @@ const CustomerInfoForm = ({
 			formData.append('[customer]last_name', last_name)
 			formData.append('[customer]email', email)
 			formData.append('[customer]phone_number', phone_number)
-			formData.append('[order]order_price', total)
-			formData.append('[items]', bag)
+			formData.append('[order_price]', total)
+			formData.append('[bag]', JSON.stringify(bag))
 			formData.append('[restaurant_id]', restaurant_id)
 
 			submitOrder(formData, history)
