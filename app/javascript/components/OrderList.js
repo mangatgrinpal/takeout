@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Col from 'react-bootstrap/Col';
 
-const OrderList = () => {
+const OrderList = ({
+	restaurant,
+	fetchOrders
+}) => {
+
+
+
+	useEffect(()=> {
+
+		let stringified = JSON.stringify(restaurant.id)
+		restaurant ? fetchOrders(stringified) : ''
+		
+	},[ restaurant ])
 
 	return (
 		<Col md={{span: 9, offset: 3}}>

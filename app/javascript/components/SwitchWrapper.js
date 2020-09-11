@@ -11,7 +11,7 @@ import PrivateRouteWrapper from './PrivateRouteWrapper';
 import PublicRoute from './PublicRoute';
 import MenuItemView from './MenuItemView';
 import Order from './Order';
-import Example from './Example';
+import OrderConfirmation from './OrderConfirmation';
 
 import { 
 	BrowserRouter as Router,
@@ -29,30 +29,6 @@ const SwitchWrapper = () => {
 	const background = (location.state && location.state.background)
 
 
-	// const [background, setBackground] = (location.state && location.state.background)
-
-
-
-	// console.log(`location.state.background =${location.state.background}`)
-
-	// useEffect(()=> {
-	// 	getBackgroundData()
-
-	// 	return persistBackgroundData(background)
-	// },[])
-
-	// const persistBackgroundData = (data) =>{
-	// 	localStorage.setItem('backgroundData', data)
-
-	// }
-
-	// const getBackgroundData = () => {
-	// 	const backgroundData = localStorage.getItem('backgroundData') || ''
-
-
-
-	// }
-
 	return (
 		<Fragment>
 			<Switch location={background || location}>
@@ -69,6 +45,7 @@ const SwitchWrapper = () => {
 				<PublicRoute exact path='/sign-up' component={UserSignUp} />
 				<PublicRoute exact path='/sign-in' component={UserSignIn} />
 				<Route exact path='/checkout' component={Order}/>
+				<Route exact path='/confirmation' component={OrderConfirmation}/>
 
 
 			</Switch>

@@ -7,7 +7,10 @@ import {
 	SUBMIT_ORDER_REQUEST,
 	SUBMIT_ORDER_SUCCESS,
 	SUBMIT_ORDER_FAILURE,
-	SET_ITEM_MODAL_VISIBILITY
+	SET_ITEM_MODAL_VISIBILITY,
+	FETCH_ORDERS_REQUEST,
+	FETCH_ORDERS_SUCCESS,
+	FETCH_ORDERS_FAILURE
 } from './types';
 
 import {
@@ -79,13 +82,53 @@ export const submitOrder = (customerOrderDetails, history) => async dispatch => 
 
 		const { data } = res;
 
-		debugger
+		dispatch({
+			type: SUBMIT_ORDER_SUCCESS
+		})
 
 	} catch(error) {
 
+		dispatch({
+			type: SUBMIT_ORDER_FAILURE
+		})
 	}
 
 
+
+}
+
+export const fetchOrders = restaurant => async dispatch => {
+
+
+
+	dispatch({
+		type: FETCH_ORDERS_REQUEST
+	})
+
+	const currentUserCredentials = {
+		'access-token': await localStorage.getItem('access-token'),
+		'client': await localStorage.getItem('client'),
+		'uid': await localStorage.getItem('uid')
+	}
+
+	try {
+		const res = await axios.get(`/orders?restaurant=${restaurant}`, {
+			headers: currentUserCredentials
+		})
+
+		setAuthHeaders(res.headers)
+		persistAuthHeadersInDeviceStorage(res.headers)
+
+		const { data } = res;
+
+
+		dispatch({
+			type: FETCH_ORDERS_SUCCESS,
+			payload: data
+		})
+	} catch(error) {
+
+	}
 
 }
 

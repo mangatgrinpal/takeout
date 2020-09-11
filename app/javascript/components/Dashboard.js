@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { userSignOut } from '../actions/users';
 
 import { fetchRestaurant, addRestaurant } from '../actions/restaurants';
+import { fetchOrders } from '../actions/orders';
 
 import {
 	BrowserRouter as Router,
@@ -35,8 +36,10 @@ const Dashboard = ({
 	userSignOut,
 	fetchRestaurant,
 	addRestaurant,
+	fetchOrders,
 	users: { currentUser, isAuthenticated },
-	restaurants: { restaurantFormVisible, restaurant }
+	restaurants: { restaurantFormVisible, restaurant },
+	orders: { orderList }
 }) => {
 
 	let { path, url } = useRouteMatch();
@@ -60,6 +63,8 @@ const Dashboard = ({
 
 		return pageCapitalized
 	}
+
+
 
 	return (
 		<Container fluid={true}>
@@ -109,11 +114,13 @@ const Dashboard = ({
 				
 				</Route>
 				<Route exact path={`${path}/orders`}>
-					<OrderList />
+					<OrderList 
+						restaurant={restaurant}
+						fetchOrders={fetchOrders}/>
 				</Route>
 				<Route exact path={`${path}/menu`}>
 					<Inventory 
-						restaurant={restaurant} />
+						restaurant={restaurant}/>
 				</Route>
 
 			</Switch>
@@ -125,7 +132,8 @@ const Dashboard = ({
 
 const mapStateToProps = state => ({
 	users: state.users,
-	restaurants: state.restaurants
+	restaurants: state.restaurants,
+	orders: state.orders
 })
 
 export default connect(
@@ -133,6 +141,7 @@ export default connect(
 	{
 		userSignOut,
 		fetchRestaurant,
-		addRestaurant
+		addRestaurant,
+		fetchOrders
 	}
 )(Dashboard)

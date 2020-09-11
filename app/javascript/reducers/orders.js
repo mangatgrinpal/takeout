@@ -6,13 +6,17 @@ import {
 	CLEAR_ORDER,
 	SUBMIT_ORDER_REQUEST,
 	SUBMIT_ORDER_SUCCESS,
-	SUBMIT_ORDER_FAILURE
+	SUBMIT_ORDER_FAILURE,
+	FETCH_ORDERS_REQUEST,
+	FETCH_ORDERS_SUCCESS,
+	FETCH_ORDERS_FAILURE
 } from '../actions/types';
 
 const initialState = {
 	bag: [],
 	isLoading: true,
-	total: 0.00
+	total: 0.00,
+	orderList: []
 }
 
 export default function(state = initialState, action) {
@@ -97,6 +101,31 @@ export default function(state = initialState, action) {
 				bag: [],
 				total: 0.00
 			};
+		case SUBMIT_ORDER_REQUEST:
+		case FETCH_ORDERS_REQUEST:
+			return {
+				...state,
+				isLoading: true
+			};
+		case SUBMIT_ORDER_SUCCESS:
+			return {
+				...state,
+				isLoading: false,
+				bag: [],
+				total: 0.00
+			};
+
+		case SUBMIT_ORDER_FAILURE:
+			return {
+				...state
+			};
+
+		case FETCH_ORDERS_SUCCESS:
+			return {
+				...state,
+				isLoading: false,
+				orderList: payload
+			}
 		default:
 			return state
 	}

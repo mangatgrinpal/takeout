@@ -6,6 +6,15 @@ class OrdersController < ApplicationController
 
 
 	def index
+
+		@orders = Order.where(restaurant_id: params[:restaurant])
+
+
+		if @orders
+			render json: @orders, status: 200
+		else
+			render status: 404
+		end
 	end
 
 	def create
@@ -20,9 +29,10 @@ class OrdersController < ApplicationController
 
 			@customer_exists = Customer.where(email: params['customer']['email'])
 
-			if @customer_exists
+			if @customer_exists.length == 1
 				@customer = @customer_exists[0]
 			else
+
 				@customer = Customer.new(customer_params)
 			end
 			@order_customer = OrderCustomer.create!(order: @order, customer: @customer)
