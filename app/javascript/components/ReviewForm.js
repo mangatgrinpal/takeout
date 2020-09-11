@@ -21,8 +21,6 @@ const ReviewForm = ({
 
 	const history = useHistory();
 
-	console.log(history)
-
 	const thumbs = imageData.map(file=> (
 		<div className='thumb' key={file.name}>
 			<div className='thumb-inner embed-responsive justify-content-end'>

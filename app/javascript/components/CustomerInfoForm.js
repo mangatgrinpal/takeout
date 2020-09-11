@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -8,8 +10,11 @@ import Col from 'react-bootstrap/Col';
 
 const CustomerInfoForm = ({
 	bag,
-	total
+	total,
+	submitOrder
 }) => {
+
+	const history = useHistory();
 
 	const [ customer, setCustomer ] = useState({
 		first_name: '',
@@ -27,8 +32,40 @@ const CustomerInfoForm = ({
 
 	const { first_name, last_name, email, phone_number } = customer;
 
+	const validate = () => {
+		return true
+	}
+
+	const handleSubmit = e => {
+		e.preventDefault();
+
+		const isValid = validate();
+		if (isValid) {
+
+			const restaurant_id = bag.length > 0 ? bag[0].restaurant.id : 'no restaurant error'
+			const formData = new FormData();
+			// let customerStringified = JSON.stringify(customer)
+			// let bagStringified = JSON.stringify(bag)
+
+			formData.append('[customer]first_name', first_name)
+			formData.append('[customer]last_name', last_name)
+			formData.append('[customer]email', email)
+			formData.append('[customer]phone_number', phone_number)
+			formData.append('[order]order_price', total)
+			formData.append('[items]', bag)
+			formData.append('[restaurant_id]', restaurant_id)
+
+			submitOrder(formData, history)
+		}
+	
+	}
+
+	
+
+
 	return (
-		<Form>
+
+		<Form onSubmit={handleSubmit}>
 			<Form.Row>
 				<Form.Group as={Col}>
 					<Form.Label>First Name</Form.Label>
@@ -74,7 +111,7 @@ const CustomerInfoForm = ({
 			<Button 
 				variant='success'
 				type='submit'
-				disabled={true} 
+				disabled={!(first_name && last_name && email)} 
 				size='lg' 
 				block>
 				Place Your Order

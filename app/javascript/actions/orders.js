@@ -60,11 +60,30 @@ export const clearOrder = () => dispatch => {
 	})
 }
 
-export const submitOrder = () => dispatch => {
+export const submitOrder = (customerOrderDetails, history) => async dispatch => {
 
+	dispatch({
+		type: SUBMIT_ORDER_REQUEST
+	})
 
+	const currentUserCredentials = {
+		'access-token': await localStorage.getItem('access-token'),
+		'client': await localStorage.getItem('client'),
+		'uid': await localStorage.getItem('uid')
+	}
 
+	try {
+		const res = await axios.post('/orders', customerOrderDetails,{
+			headers: currentUserCredentials
+		});
 
+		const { data } = res;
+
+		debugger
+
+	} catch(error) {
+
+	}
 
 
 

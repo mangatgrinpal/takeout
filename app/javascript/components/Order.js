@@ -9,7 +9,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import { 
 	removeItemFromOrder,
 	addQuantityToOrder,
-	subtractQuantityFromOrder
+	subtractQuantityFromOrder,
+	submitOrder
 } from '../actions/orders';
 
 import Container from 'react-bootstrap/Container';
@@ -24,6 +25,7 @@ const Order = ({
 	removeItemFromOrder,
 	addQuantityToOrder,
 	subtractQuantityFromOrder,
+	submitOrder,
 	orders: { bag, total }
 }) => {
 
@@ -73,7 +75,8 @@ const Order = ({
 					</p>
 					<CustomerInfoForm 
 						bag={bag} 
-						total={total}/>
+						total={total}
+						submitOrder={submitOrder}/>
 				</Col>
 
 			}
@@ -127,6 +130,7 @@ export default connect(
 	{
 		removeItemFromOrder,
 		addQuantityToOrder,
-		subtractQuantityFromOrder
+		subtractQuantityFromOrder,
+		submitOrder
 	}
 )(Order)

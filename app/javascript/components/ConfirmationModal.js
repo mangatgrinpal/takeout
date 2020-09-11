@@ -16,6 +16,7 @@ const ConfirmationModal = ({
 			show={show}
 			size='lg'
 			centered
+			onHide={onHide}
 			id='confirmation-modal'
 		>
 			<Modal.Header closeButton>
@@ -28,7 +29,10 @@ const ConfirmationModal = ({
 			</Modal.Body>
 			<Modal.Footer>
 				<Button onClick={onHide}>Cancel</Button>
-				<Link to='/restaurant-list' onClick={()=>{clearOrder()}} variant='danger'>Go back</Link>
+				<Link
+					className='btn btn-danger' 
+					to='/restaurant-list' 
+					onClick={()=>{clearOrder()}}>Go back</Link>
 			</Modal.Footer>
 
 		</Modal>
