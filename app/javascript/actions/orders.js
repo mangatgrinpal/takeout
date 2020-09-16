@@ -10,7 +10,8 @@ import {
 	SET_ITEM_MODAL_VISIBILITY,
 	FETCH_ORDERS_REQUEST,
 	FETCH_ORDERS_SUCCESS,
-	FETCH_ORDERS_FAILURE
+	FETCH_ORDERS_FAILURE,
+	SET_SELECTED_ORDER
 } from './types';
 
 import {
@@ -132,6 +133,14 @@ export const fetchOrders = restaurant => async dispatch => {
 
 	}
 
+}
+
+export const setSelectedOrder = order => dispatch => {
+
+	dispatch({
+		type: SET_SELECTED_ORDER,
+		payload: order
+	})
 }
 
 

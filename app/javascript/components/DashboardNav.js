@@ -22,8 +22,7 @@ const DashboardNav = ({
 	const { name, description, image } = restaurant;
 
 	return (
-		<Fragment>
-		<Col md={3} className='position-absolute bg-light' style={{zIndex: 1}}>
+		<Col md={3} className='position-absolute bg-light h-100' style={{zIndex: 1}}>
 			<div className='dashnav-image-container'>
 				<Image className='embed-responsive-item embed-responsive-1by1' src={image ? image.url : ''}/>
 			</div>
@@ -34,7 +33,13 @@ const DashboardNav = ({
 					<Link 
 						to={`${url}/orders`}
 						onClick={()=>{handleClick(false)}}
-					>View Orders</Link>
+					>Active Orders</Link>
+				</li>
+				<li>
+					<Link 
+						to={`${url}/orders`}
+						onClick={()=>{handleClick(false)}}
+					>Order History</Link>
 				</li>
 				<li>
 					<Link 
@@ -49,8 +54,6 @@ const DashboardNav = ({
 				</li>
 			</ul>
 		</Col>
-		
-		</Fragment>
 
 	)
 }

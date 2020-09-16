@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { userSignOut } from '../actions/users';
 
 import { fetchRestaurant, addRestaurant } from '../actions/restaurants';
-import { fetchOrders } from '../actions/orders';
+import { fetchOrders, setSelectedOrder } from '../actions/orders';
 
 import {
 	BrowserRouter as Router,
@@ -37,9 +37,10 @@ const Dashboard = ({
 	fetchRestaurant,
 	addRestaurant,
 	fetchOrders,
+	setSelectedOrder,
 	users: { currentUser, isAuthenticated },
 	restaurants: { restaurantFormVisible, restaurant },
-	orders: { orderList }
+	orders: { orderList, selectedOrder }
 }) => {
 
 	let { path, url } = useRouteMatch();
@@ -68,7 +69,7 @@ const Dashboard = ({
 
 	return (
 		<Container fluid={true}>
-			<Row>
+			<Row className='vh-100 overflow-auto'>
 				<CSSTransition
 					in={dashNavVisible}
 					timeout={600}
@@ -84,13 +85,14 @@ const Dashboard = ({
 						setDashNavVisible={setDashNavVisible}
 					/>
 				</CSSTransition>
-				<Col md={3} className='bg-light position-absolute' style={{'zIndex': 1}}>
+				<Col md={3} className='bg-light position-fixed border-bottom' style={{'zIndex': 1}}>
 					<FontAwesomeIcon
-					 icon={['fas','bars']}
-					 onClick={()=>{setDashNavVisible(!dashNavVisible)}}
-					 size='2x'/>
-					 &nbsp;
-					 &nbsp;
+						className='border rounded mx-1 px-1'
+						icon={['fas','bars']}
+						onClick={()=>{setDashNavVisible(!dashNavVisible)}}
+						size='2x'/>
+						&nbsp;
+						&nbsp;
 					 {currentPageName()}
 				</Col>
 				<CSSTransition
@@ -128,7 +130,9 @@ const Dashboard = ({
 					<OrderList 
 						restaurant={restaurant}
 						fetchOrders={fetchOrders}
-						orderList={orderList}/>
+						orderList={orderList}
+						selectedOrder={selectedOrder}
+						setSelectedOrder={setSelectedOrder}/>
 				</Route>
 				<Route exact path={`${path}/menu`}>
 					<Inventory 
@@ -154,6 +158,7 @@ export default connect(
 		userSignOut,
 		fetchRestaurant,
 		addRestaurant,
-		fetchOrders
+		fetchOrders,
+		setSelectedOrder
 	}
 )(Dashboard)

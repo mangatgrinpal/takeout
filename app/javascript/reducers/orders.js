@@ -9,14 +9,16 @@ import {
 	SUBMIT_ORDER_FAILURE,
 	FETCH_ORDERS_REQUEST,
 	FETCH_ORDERS_SUCCESS,
-	FETCH_ORDERS_FAILURE
+	FETCH_ORDERS_FAILURE,
+	SET_SELECTED_ORDER
 } from '../actions/types';
 
 const initialState = {
 	bag: [],
 	isLoading: true,
 	total: 0.00,
-	orderList: []
+	orderList: [],
+	selectedOrder: []
 }
 
 export default function(state = initialState, action) {
@@ -125,6 +127,11 @@ export default function(state = initialState, action) {
 				...state,
 				isLoading: false,
 				orderList: payload
+			}
+		case SET_SELECTED_ORDER:
+			return {
+				...state,
+				selectedOrder: state.orderList.filter(order => order.id === payload)
 			}
 		default:
 			return state
