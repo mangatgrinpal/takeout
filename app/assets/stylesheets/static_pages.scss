@@ -7,6 +7,20 @@
 	object-fit: cover;
 }
 
+.dashnav-image-container {
+	overflow: hidden;
+
+}
+
+.dashboard-overlay {
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 51;
+	background-color: black;
+	opacity: 0.8;
+}
+
 .dropzone {
 	padding-top: 8rem;
 }

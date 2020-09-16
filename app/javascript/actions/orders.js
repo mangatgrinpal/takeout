@@ -86,6 +86,8 @@ export const submitOrder = (customerOrderDetails, history) => async dispatch => 
 			type: SUBMIT_ORDER_SUCCESS
 		})
 
+		history.push('/confirmation')
+
 	} catch(error) {
 
 		dispatch({

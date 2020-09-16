@@ -84,15 +84,26 @@ const Dashboard = ({
 						setDashNavVisible={setDashNavVisible}
 					/>
 				</CSSTransition>
-				<Col md={3} className='bg-light vh-100 position-absolute'>
+				<Col md={3} className='bg-light position-absolute' style={{'zIndex': 1}}>
 					<FontAwesomeIcon
 					 icon={['fas','bars']}
-					 onClick={()=>{setDashNavVisible(true)}}
+					 onClick={()=>{setDashNavVisible(!dashNavVisible)}}
 					 size='2x'/>
 					 &nbsp;
 					 &nbsp;
 					 {currentPageName()}
 				</Col>
+				<CSSTransition
+					in={dashNavVisible}
+					timeout={600}
+					unmountOnExit
+					classNames='fade'>
+					<Col  
+						md={{span: 9, offset: 3}}
+						onClick={()=>{setDashNavVisible(false)}}
+						className='vh-100 dashboard-overlay position-fixed'/>
+				</CSSTransition>
+
 
 				
 
@@ -116,7 +127,8 @@ const Dashboard = ({
 				<Route exact path={`${path}/orders`}>
 					<OrderList 
 						restaurant={restaurant}
-						fetchOrders={fetchOrders}/>
+						fetchOrders={fetchOrders}
+						orderList={orderList}/>
 				</Route>
 				<Route exact path={`${path}/menu`}>
 					<Inventory 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -22,8 +22,9 @@ const DashboardNav = ({
 	const { name, description, image } = restaurant;
 
 	return (
-		<Col md={3} className='fixed-top bg-light' style={{overflow: 'hidden'}}>
-			<div className='w-100'>
+		<Fragment>
+		<Col md={3} className='position-absolute bg-light' style={{zIndex: 1}}>
+			<div className='dashnav-image-container'>
 				<Image className='embed-responsive-item embed-responsive-1by1' src={image ? image.url : ''}/>
 			</div>
 			
@@ -48,6 +49,8 @@ const DashboardNav = ({
 				</li>
 			</ul>
 		</Col>
+		
+		</Fragment>
 
 	)
 }

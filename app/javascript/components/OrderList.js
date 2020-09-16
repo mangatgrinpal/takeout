@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
+import OrderListSection from './OrderListSection';
+
+import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
 
 const OrderList = ({
 	restaurant,
-	fetchOrders
+	fetchOrders,
+	orderList
 }) => {
 
 
@@ -16,10 +20,38 @@ const OrderList = ({
 		
 	},[ restaurant ])
 
+	const statuses = [
+		'New', 
+		'In Progress', 
+		'Ready for Pickup', 
+		'Completed', 
+		'Cancelled'
+	]
+
 	return (
-		<Col md={{span: 9, offset: 3}}>
-			<h1>Order page foo</h1>
-		</Col>
+		<Fragment>
+			<Col md={3} className='pt-5'>
+				<h1>Hello</h1>
+			</Col>
+			<Col md={{span: 9}}>
+				<Row>
+					<Col md={12}>
+						<h1>View orders</h1>
+					</Col>
+				</Row>
+				<Row>
+					<Col md={12}>
+						<OrderListSection/>
+					</Col>
+				</Row>
+			</Col>
+
+			
+
+
+		</Fragment>
+		
+		
 	)	
 }
 
