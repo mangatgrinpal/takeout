@@ -24,7 +24,7 @@ const DashboardNav = ({
 	return (
 		<Col md={3} className='position-absolute bg-light h-100' style={{zIndex: 1}}>
 			<div className='dashnav-image-container'>
-				<Image className='embed-responsive-item embed-responsive-1by1' src={image ? image.url : ''}/>
+				<Image src={image ? image.url : ''}/>
 			</div>
 			
 			<h6>{name ? name : ''}</h6>

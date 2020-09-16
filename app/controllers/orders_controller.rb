@@ -42,10 +42,14 @@ class OrdersController < ApplicationController
 		if @order.save
 			@items = JSON.parse(params[:bag])
 			@items.each do |item|
-				byebug
+
 				@order_item = OrderItem.create!(order: @order, item_id: item["id"], quantity: item["quantity"])
 			end
 		end
+
+	end
+
+	def update
 
 	end
 

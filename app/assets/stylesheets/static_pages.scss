@@ -12,6 +12,12 @@
 
 }
 
+.toggle-dashnav-icon {
+	&:hover {
+		cursor: pointer;
+	}
+}
+
 .dashboard-overlay {
 	top: 0;
 	right: 0;
@@ -21,6 +27,13 @@
 	opacity: 0.8;
 
 	&:hover{
+		cursor: pointer;
+	}
+}
+
+.order-list {
+	min-height: 4rem;
+	&:hover {
 		cursor: pointer;
 	}
 }

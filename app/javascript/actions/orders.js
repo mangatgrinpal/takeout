@@ -11,7 +11,10 @@ import {
 	FETCH_ORDERS_REQUEST,
 	FETCH_ORDERS_SUCCESS,
 	FETCH_ORDERS_FAILURE,
-	SET_SELECTED_ORDER
+	SET_SELECTED_ORDER,
+	UPDATE_ORDER_STATUS_REQUEST,
+	UPDATE_ORDER_STATUS_SUCCESS,
+	UPDATE_ORDER_STATUS_FAILURE
 } from './types';
 
 import {
@@ -140,6 +143,13 @@ export const setSelectedOrder = order => dispatch => {
 	dispatch({
 		type: SET_SELECTED_ORDER,
 		payload: order
+	})
+}
+
+export const updateOrderStatus = status => async dispatch => {
+	dispatch({
+		type: UPDATE_ORDER_STATUS,
+		payload: status
 	})
 }
 
