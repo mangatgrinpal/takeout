@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
 	def index
 
-		@orders = Order.where(restaurant_id: params[:restaurant])
+		@orders = Order.where(restaurant_id: params[:restaurant]).includes(:order_items, :items, :customer).order('created_at ASC')
 
 
 		if @orders
@@ -50,6 +50,14 @@ class OrdersController < ApplicationController
 	end
 
 	def update
+
+		@order = Order.update(params[:id], status: params[:new_status])
+
+		if @order.save
+			render json: @order, status: 200
+		else
+			render status: 400
+		end
 
 	end
 

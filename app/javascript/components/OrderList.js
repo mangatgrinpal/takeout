@@ -13,13 +13,13 @@ const OrderList = ({
 	fetchOrders,
 	orderList,
 	setSelectedOrder,
-	selectedOrder
+	selectedOrder,
+	setOrderStatus
 }) => {
 
 
 
 	useEffect(()=> {
-
 		let stringified = JSON.stringify(restaurant.id)
 		restaurant ? fetchOrders(stringified) : ''
 		
@@ -34,6 +34,7 @@ const OrderList = ({
 	]
 
 	const newOrders = orderList.filter(order=> order.status === 'New')
+	const ordersInProgress = orderList.filter(order=> order.status === 'In Progress')
 
 	
 
@@ -61,6 +62,27 @@ const OrderList = ({
 						</Row>
 					)
 				})}
+				<Row>
+					<Col>
+						In Progress
+					</Col>
+				</Row>
+				{ordersInProgress.map(order=> {
+					const timeElapsed = moment(order.created_at).fromNow();
+
+					return (
+						<Row key={order.id} className='order-list my-1'>
+							<Col className='border' onClick={()=>{setSelectedOrder(order.id)}}>
+								{order.customer.first_name} {order.customer.last_name.charAt(0)}
+							
+							<span className='text-right d-block'>
+								{timeElapsed}
+							</span>
+							</Col>
+							
+						</Row>
+					)
+				})}
 			</Col>
 			<Col md={{span: 9, offset: 3}} className='position-fixed'>
 				<Row>
@@ -72,13 +94,13 @@ const OrderList = ({
 					<Col md={12} className='border vh-50 overflow-auto'>
 						<Row>
 							<Col>
-								Order number :{selectedOrder && selectedOrder[0].order_number}
+								Order number: {selectedOrder.length == 1 && selectedOrder[0].order_number}
 							</Col>
 							<Col>
-								Placed at: {selectedOrder && selectedOrder[0].time_placed}
+								Received at: {selectedOrder.length == 1 && selectedOrder[0].time_placed}
 							</Col>
 						</Row>
-						{selectedOrder && selectedOrder[0].order_items.map(orderItem=>{
+						{selectedOrder.length == 1 && selectedOrder[0].order_items.map(orderItem=>{
 							const item = selectedOrder[0].items.filter(item=> item.id == orderItem.item_id)
 							return (
 								<Row key={item[0].id}>
@@ -97,7 +119,7 @@ const OrderList = ({
 
 					<Button 
 						className='mx-5 mt-5' 
-						onClick={()=>{setOrderStatus('In Progress')}}
+						onClick={()=>{setOrderStatus(selectedOrder[0].id, 'In Progress')}}
 						block>
 						Confirm order sent to kitchen
 					</Button>

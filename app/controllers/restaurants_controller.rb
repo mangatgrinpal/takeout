@@ -13,7 +13,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def show
-		@restaurant = Restaurant.where(user_id: params[:id]).first
+		@restaurant = Restaurant.where(user_id: params[:id]).includes(:address).first
 		if @restaurant
 			render json: @restaurant, status: 201
 		else

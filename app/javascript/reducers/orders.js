@@ -136,6 +136,15 @@ export default function(state = initialState, action) {
 				...state,
 				selectedOrder: state.orderList.filter(order => order.id === payload)
 			}
+
+		case UPDATE_ORDER_STATUS_SUCCESS:
+			return {
+				...state,
+				orderList: state.orderList.map(order =>
+					order.id === payload.id ? payload : order
+
+				)
+			};
 		default:
 			return state
 	}

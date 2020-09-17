@@ -146,11 +146,38 @@ export const setSelectedOrder = order => dispatch => {
 	})
 }
 
-export const updateOrderStatus = status => async dispatch => {
+export const setOrderStatus = (order, status) => async dispatch => {
+
+
 	dispatch({
-		type: UPDATE_ORDER_STATUS,
-		payload: status
+		type: UPDATE_ORDER_STATUS_REQUEST
 	})
+
+	const currentUserCredentials = {
+		'access-token': await localStorage.getItem('access-token'),
+		'client': await localStorage.getItem('client'),
+		'uid': await localStorage.getItem('uid')
+	}
+
+	try {
+		const res = await axios.patch(`/orders/${order}`, {new_status: status},{
+			headers: currentUserCredentials
+		})
+
+		const { data } = res;
+
+
+
+		dispatch({
+			type: UPDATE_ORDER_STATUS_SUCCESS,
+			payload: data
+		})
+
+
+	} catch(error) {
+
+	}
+
 }
 
 

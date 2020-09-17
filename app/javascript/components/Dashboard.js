@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { userSignOut } from '../actions/users';
 
 import { fetchRestaurant, addRestaurant } from '../actions/restaurants';
-import { fetchOrders, setSelectedOrder } from '../actions/orders';
+import { fetchOrders, setSelectedOrder, setOrderStatus } from '../actions/orders';
 
 import {
 	BrowserRouter as Router,
@@ -38,6 +38,7 @@ const Dashboard = ({
 	addRestaurant,
 	fetchOrders,
 	setSelectedOrder,
+	setOrderStatus,
 	users: { currentUser, isAuthenticated },
 	restaurants: { restaurantFormVisible, restaurant },
 	orders: { orderList, selectedOrder }
@@ -132,7 +133,8 @@ const Dashboard = ({
 						fetchOrders={fetchOrders}
 						orderList={orderList}
 						selectedOrder={selectedOrder}
-						setSelectedOrder={setSelectedOrder}/>
+						setSelectedOrder={setSelectedOrder}
+						setOrderStatus={setOrderStatus}/>
 				</Route>
 				<Route exact path={`${path}/menu`}>
 					<Inventory 
@@ -159,6 +161,7 @@ export default connect(
 		fetchRestaurant,
 		addRestaurant,
 		fetchOrders,
-		setSelectedOrder
+		setSelectedOrder,
+		setOrderStatus
 	}
 )(Dashboard)
