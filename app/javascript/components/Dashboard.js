@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DashboardNav from './DashboardNav';
+import OrderPage from './OrderPage';
 import OrderList from './OrderList';
 import Inventory from './Inventory';
 import MenuItemForm from './MenuItemForm';
@@ -128,7 +129,7 @@ const Dashboard = ({
 				
 				</Route>
 				<Route exact path={`${path}/orders`}>
-					<OrderList 
+					<OrderPage 
 						restaurant={restaurant}
 						fetchOrders={fetchOrders}
 						orderList={orderList}
