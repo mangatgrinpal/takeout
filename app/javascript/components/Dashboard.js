@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import DashboardNav from './DashboardNav';
 import OrderPage from './OrderPage';
-import OrderList from './OrderList';
 import Inventory from './Inventory';
 import MenuItemForm from './MenuItemForm';
-
 import MultiStepRestaurantForm from './MultiStepRestaurantForm';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -16,7 +15,6 @@ import { connect } from 'react-redux';
 import { userSignOut } from '../actions/users';
 
 import { fetchRestaurant, addRestaurant } from '../actions/restaurants';
-import { fetchOrders, setSelectedOrder, setOrderStatus } from '../actions/orders';
 
 import {
 	BrowserRouter as Router,
@@ -38,11 +36,9 @@ const Dashboard = ({
 	fetchRestaurant,
 	addRestaurant,
 	fetchOrders,
-	setSelectedOrder,
 	setOrderStatus,
 	users: { currentUser, isAuthenticated },
-	restaurants: { restaurantFormVisible, restaurant },
-	orders: { orderList, selectedOrder }
+	restaurants: { restaurantFormVisible, restaurant }
 }) => {
 
 	let { path, url } = useRouteMatch();
@@ -129,13 +125,7 @@ const Dashboard = ({
 				
 				</Route>
 				<Route exact path={`${path}/orders`}>
-					<OrderPage 
-						restaurant={restaurant}
-						fetchOrders={fetchOrders}
-						orderList={orderList}
-						selectedOrder={selectedOrder}
-						setSelectedOrder={setSelectedOrder}
-						setOrderStatus={setOrderStatus}/>
+					<OrderPage />
 				</Route>
 				<Route exact path={`${path}/menu`}>
 					<Inventory 
@@ -160,9 +150,6 @@ export default connect(
 	{
 		userSignOut,
 		fetchRestaurant,
-		addRestaurant,
-		fetchOrders,
-		setSelectedOrder,
-		setOrderStatus
+		addRestaurant
 	}
 )(Dashboard)
