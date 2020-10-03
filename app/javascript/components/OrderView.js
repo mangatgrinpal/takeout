@@ -9,6 +9,38 @@ const OrderView = ({
 	setSelectedOrder,
 	setOrderStatus
 }) => {
+
+
+
+	const handleClick = () => {
+		console.log(selectedOrder)
+		const order = selectedOrder.length > 0 ? selectedOrder[0] : ''
+		const { id, status } = order;
+		switch (status) {
+			case 'New':
+				setOrderStatus(id, 'In Progress')
+				break
+			case 'In Progress':
+				setOrderStatus(id, 'Completed, Waiting for Pick Up')
+				break
+			case 'Completed, Waiting for Pick Up':
+				setOrderStatus(id, 'Completed')
+				break
+				// I previously didn't havbe these breaks so when I set the status of a 
+				// order with the status of New it went to In progress and hit the conditionl
+				// and 
+		}
+		// setOrderStatus(selectedOrder[0].id, 'In Progress')
+	}
+
+	const handleCancel = () => {
+		const order = selectedOrder.length > 0 ? selectedOrder[0] : ''
+		const { id, status } = order;
+
+		
+	}
+
+
 	return (
 		<Col md={{span: 9, offset: 3}} className='position-fixed'>
 			<Row>
@@ -45,7 +77,7 @@ const OrderView = ({
 
 				<Button 
 					className='mx-5 mt-5' 
-					onClick={()=>{setOrderStatus(selectedOrder[0].id, 'In Progress')}}
+					onClick={handleClick}
 					block>
 					Confirm order sent to kitchen
 				</Button>

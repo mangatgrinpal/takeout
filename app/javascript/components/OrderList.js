@@ -14,13 +14,6 @@ const OrderList = ({
 }) => {
 
 
-
-	useEffect(()=> {
-		let stringified = JSON.stringify(restaurant.id)
-		restaurant ? fetchOrders(stringified) : ''
-		
-	},[ restaurant ])
-
 	const statuses = [
 		'New', 
 		'In Progress', 
@@ -32,16 +25,16 @@ const OrderList = ({
 	const newOrders = orderList.filter(order=> order.status === 'New')
 	const ordersInProgress = orderList.filter(order=> order.status === 'In Progress')
 
-	
-
 	return (
 		<Fragment>
 			<Col md={3} className='pt-4'>
-				<Row>
-					<Col className='border'>
-						New orders
-					</Col>
-				</Row>
+				{newOrders.length > 0 &&
+					<Row>
+						<Col className='border'>
+							New orders
+						</Col>
+					</Row>
+				}
 				{newOrders.map(order=> {
 					const timeElapsed = moment(order.created_at).fromNow();
 
@@ -58,11 +51,14 @@ const OrderList = ({
 						</Row>
 					)
 				})}
-				<Row>
-					<Col>
-						In Progress
-					</Col>
-				</Row>
+				{ordersInProgress.length > 0 && 
+					<Row>
+						<Col>
+							In Progress
+						</Col>
+					</Row>
+				}
+				
 				{ordersInProgress.map(order=> {
 					const timeElapsed = moment(order.created_at).fromNow();
 

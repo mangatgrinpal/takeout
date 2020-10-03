@@ -37,7 +37,7 @@ const DashboardNav = ({
 				</li>
 				<li>
 					<Link 
-						to={`${url}/orders`}
+						to={`${url}/order_history`}
 						onClick={()=>{handleClick(false)}}
 					>Order History</Link>
 				</li>

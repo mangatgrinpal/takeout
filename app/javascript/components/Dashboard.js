@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DashboardNav from './DashboardNav';
 import OrderPage from './OrderPage';
+import OrderHistory from './OrderHistory';
 import Inventory from './Inventory';
 import MenuItemForm from './MenuItemForm';
 import MultiStepRestaurantForm from './MultiStepRestaurantForm';
@@ -126,6 +127,9 @@ const Dashboard = ({
 				</Route>
 				<Route exact path={`${path}/orders`}>
 					<OrderPage />
+				</Route>
+				<Route exact path={`${path}/order_history`}>
+					<OrderHistory />
 				</Route>
 				<Route exact path={`${path}/menu`}>
 					<Inventory 
