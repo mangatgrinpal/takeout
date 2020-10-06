@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 
 import { fetchOrders, setSelectedOrder, setOrderStatus } from '../actions/orders';
 
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 const OrderPage = ({
 	fetchOrders,
 	setSelectedOrder,
@@ -20,19 +23,34 @@ const OrderPage = ({
 		
 	},[ restaurant ])
 
+	const newOrders = orderList.filter(order=> order.status === 'New')
+	const ordersInProgress = orderList.filter(order=> order.status === 'In Progress')
+	const readyForPickup = orderList.filter(order=> order.status === 'Ready for pickup')
+
+
 
 	return (
 		<Fragment>
-			<OrderList 
-				restaurant={restaurant}
-				fetchOrders={fetchOrders}
-				orderList={orderList}
-				setSelectedOrder={setSelectedOrder} />
+			<Col md={3} className='pt-4'>
+				<OrderList 
+					restaurant={restaurant}
+					orderList={newOrders}
+					setSelectedOrder={setSelectedOrder} />
+				<OrderList 
+					restaurant={restaurant}
+					orderList={ordersInProgress}
+					setSelectedOrder={setSelectedOrder} />
+				<OrderList 
+					restaurant={restaurant}
+					orderList={readyForPickup}
+					setSelectedOrder={setSelectedOrder} />
+			</Col>
 
 			<OrderView 
 				selectedOrder={selectedOrder}
 				setSelectedOrder={setSelectedOrder}
 				setOrderStatus={setOrderStatus} />
+
 		</Fragment>
 	)
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -21,9 +21,9 @@ const OrderView = ({
 				setOrderStatus(id, 'In Progress')
 				break
 			case 'In Progress':
-				setOrderStatus(id, 'Completed, Waiting for Pick Up')
+				setOrderStatus(id, 'Ready for pickup')
 				break
-			case 'Completed, Waiting for Pick Up':
+			case 'Ready for pickup':
 				setOrderStatus(id, 'Completed')
 				break
 				// I previously didn't havbe these breaks so when I set the status of a 
@@ -37,7 +37,28 @@ const OrderView = ({
 		const order = selectedOrder.length > 0 ? selectedOrder[0] : ''
 		const { id, status } = order;
 
-		
+	}
+
+	const buttonText = () => {
+		const order = selectedOrder.length > 0 ? selectedOrder[0] : ''
+		const { id, status } = order;
+		let text;
+		switch (status) {
+			case 'New':
+				text = 'Confirm order was sent to kitchen'
+				break
+			case 'In Progress':
+				text = 'Mark order as ready for pickup'
+				break
+			case 'Ready for pickup':
+				text = 'Confirm order has been picked up'
+				break
+				// I previously didn't havbe these breaks so when I set the status of a 
+				// order with the status of New it went to In progress and hit the conditionl
+				// and 
+		}
+
+		return text
 	}
 
 
@@ -75,12 +96,23 @@ const OrderView = ({
 			</Row>
 			<Row>
 
-				<Button 
-					className='mx-5 mt-5' 
-					onClick={handleClick}
-					block>
-					Confirm order sent to kitchen
+				{selectedOrder.length > 0 && selectedOrder[0].status === 'New' ?
+				<Button>
+				 Cancel
 				</Button>
+				 : <div/>
+				}
+				{selectedOrder.length > 0 && selectedOrder[0].status != 'Completed' ?
+					<Button 
+						className='mx-5 mt-5' 
+						onClick={handleClick}
+						block>
+						{buttonText()}
+					</Button>
+				: 
+				<div/>
+				}
+				
 			</Row>
 		</Col>
 	)	

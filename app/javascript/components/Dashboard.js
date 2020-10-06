@@ -84,7 +84,7 @@ const Dashboard = ({
 						setDashNavVisible={setDashNavVisible}
 					/>
 				</CSSTransition>
-				<Col md={3} className='bg-light position-fixed border-bottom' style={{'zIndex': 1}}>
+				<Col md={3} className='bg-light position-fixed border-bottom border-right' style={{'zIndex': 1}}>
 					<FontAwesomeIcon
 						className='border rounded mx-1 px-1 toggle-dashnav-icon'
 						icon={['fas','bars']}

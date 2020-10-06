@@ -6,11 +6,15 @@ import OrderView from './OrderView';
 import { connect } from 'react-redux';
 
 
-import { fetchOrders } from '../actions/orders';
+import { fetchOrders, setSelectedOrder, setOrderStatus } from '../actions/orders';
+
+import Col from 'react-bootstrap/Col';
 
 
 const OrderHistory = ({
 	fetchOrders,
+	setSelectedOrder,
+	setOrderStatus,
 	restaurants: { restaurant },
 	orders: { orderList, selectedOrder }
 }) => {
@@ -21,10 +25,21 @@ const OrderHistory = ({
 		
 	},[ restaurant ])
 
+	const completedOrders = orderList.filter(order=> order.status === 'Completed')
+
 
 	return (
 		<Fragment>
-			<OrderList />
+			<Col md={3} className='pt-4'>
+				<OrderList 
+					restaurant={restaurant}
+					orderList={completedOrders}
+					setSelectedOrder={setSelectedOrder}/>
+			</Col>
+			<OrderView 
+				selectedOrder={selectedOrder}
+				setSelectedOrder={setSelectedOrder}
+				setOrderStatus={setOrderStatus} />
 		</Fragment>
 	)
 }
@@ -37,6 +52,8 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 {
-	fetchOrders
+	fetchOrders,
+	setSelectedOrder,
+	setOrderStatus
 }
 )(OrderHistory)
