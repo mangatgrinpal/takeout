@@ -44,6 +44,7 @@ class OrdersController < ApplicationController
 			@items.each do |item|
 
 				@order_item = OrderItem.create!(order: @order, item_id: item["id"], quantity: item["quantity"])
+				
 			end
 		end
 

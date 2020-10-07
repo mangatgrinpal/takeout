@@ -36,6 +36,7 @@ const OrderView = ({
 	const handleCancel = () => {
 		const order = selectedOrder.length > 0 ? selectedOrder[0] : ''
 		const { id, status } = order;
+		setOrderStatus(id, 'Cancelled')
 
 	}
 
@@ -97,20 +98,25 @@ const OrderView = ({
 			<Row>
 
 				{selectedOrder.length > 0 && selectedOrder[0].status === 'New' ?
-				<Button>
+				<Button
+					variant='danger'
+					className='mx-5 mt-5'
+					onClick={handleCancel}
+					block>
 				 Cancel
 				</Button>
 				 : <div/>
 				}
-				{selectedOrder.length > 0 && selectedOrder[0].status != 'Completed' ?
-					<Button 
-						className='mx-5 mt-5' 
-						onClick={handleClick}
-						block>
-						{buttonText()}
-					</Button>
+				{selectedOrder.length > 0 && selectedOrder[0].status != 'Completed' || 'Cancelled' ?
+					<div/>	
 				: 
-				<div/>
+				
+				<Button 
+					className='mx-5 mt-5' 
+					onClick={handleClick}
+					block>
+					{buttonText()}
+				</Button>
 				}
 				
 			</Row>

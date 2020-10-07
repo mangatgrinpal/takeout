@@ -37,7 +37,6 @@ const Dashboard = ({
 	fetchRestaurant,
 	addRestaurant,
 	fetchOrders,
-	setOrderStatus,
 	users: { currentUser, isAuthenticated },
 	restaurants: { restaurantFormVisible, restaurant }
 }) => {

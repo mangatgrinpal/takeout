@@ -26,6 +26,7 @@ const OrderHistory = ({
 	},[ restaurant ])
 
 	const completedOrders = orderList.filter(order=> order.status === 'Completed')
+	const cancelledOrders = orderList.filter(order=> order.status === 'Cancelled')
 
 
 	return (
@@ -35,6 +36,11 @@ const OrderHistory = ({
 					restaurant={restaurant}
 					orderList={completedOrders}
 					setSelectedOrder={setSelectedOrder}/>
+				<OrderList 
+					restaurant={restaurant}
+					orderList={cancelledOrders}
+					setSelectedOrder={setSelectedOrder}/>
+
 			</Col>
 			<OrderView 
 				selectedOrder={selectedOrder}
