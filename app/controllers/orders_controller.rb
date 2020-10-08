@@ -40,11 +40,12 @@ class OrdersController < ApplicationController
 		end
 
 		if @order.save
+			OrderMailer.order_placed_email(@order).deliver_now
 			@items = JSON.parse(params[:bag])
 			@items.each do |item|
 
 				@order_item = OrderItem.create!(order: @order, item_id: item["id"], quantity: item["quantity"])
-				
+
 			end
 		end
 
@@ -55,6 +56,17 @@ class OrdersController < ApplicationController
 		@order = Order.update(params[:id], status: params[:new_status])
 
 		if @order.save
+
+			case @order.status
+			when 'In Progress'
+				OrderMailer.order_accepted_email(@order).deliver_now
+			when 'Ready for pickup'
+				OrderMailer.order_ready_email(@order).deliver_now
+			when 'Completed'
+				OrderMailer.order_completed_email(@order).deliver_now
+			else
+				OrderMailer.order_cancelled_email(@order).deliver_now
+			end
 			render json: @order, status: 200
 		else
 			render status: 400

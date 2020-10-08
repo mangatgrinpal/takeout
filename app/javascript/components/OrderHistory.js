@@ -23,6 +23,9 @@ const OrderHistory = ({
 		let stringified = JSON.stringify(restaurant.id)
 		restaurant ? fetchOrders(stringified) : ''
 		
+		return () => {
+			setSelectedOrder([])
+		}
 	},[ restaurant ])
 
 	const completedOrders = orderList.filter(order=> order.status === 'Completed')

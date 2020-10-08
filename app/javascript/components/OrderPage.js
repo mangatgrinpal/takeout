@@ -20,13 +20,15 @@ const OrderPage = ({
 	useEffect(()=> {
 		let stringified = JSON.stringify(restaurant.id)
 		restaurant ? fetchOrders(stringified) : ''
-		
+
+		return () => {
+			setSelectedOrder([])
+		}
 	},[ restaurant ])
 
-	const newOrders = orderList.filter(order=> order.status === 'New')
-	const ordersInProgress = orderList.filter(order=> order.status === 'In Progress')
-	const readyForPickup = orderList.filter(order=> order.status === 'Ready for pickup')
-
+	const newOrders = orderList ? orderList.filter(order=> order.status === 'New') : []
+	const ordersInProgress = orderList ? orderList.filter(order=> order.status === 'In Progress') : []
+	const readyForPickup = orderList ? orderList.filter(order=> order.status === 'Ready for pickup'): []
 
 
 	return (
