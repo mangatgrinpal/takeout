@@ -101,7 +101,7 @@ const Dashboard = ({
 					<Col  
 						md={{span: 9, offset: 3}}
 						onClick={()=>{setDashNavVisible(false)}}
-						className='vh-100 dashboard-overlay position-fixed'/>
+						className='vh-100 dashboard-overlay position-fixed d-none d-md-block'/>
 				</CSSTransition>
 
 

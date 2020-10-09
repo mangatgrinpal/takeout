@@ -3,6 +3,17 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
+
+.hero-image {
+	height: 70vh;
+	background-image: url(https://ginnysbucket.s3-us-west-1.amazonaws.com/dev-images/takeoutfood.jpg);
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+
+
 .embed-responsive-item {
 	object-fit: cover;
 }

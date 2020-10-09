@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -61,7 +61,7 @@ const OrderView = ({
 	return (
 		<Col md={{span: 9, offset: 3}} className='position-fixed'>
 			{selectedOrder.length > 0 ? 
-				<>
+				<Fragment>
 					<Row>
 						<Col md={12}>
 							<h1>Order Details</h1>
@@ -117,10 +117,14 @@ const OrderView = ({
 						}
 						
 					</Row>
-				</>
+				</Fragment>
 				:
 
-				<div/>
+				<Row>
+					<Col>
+						select an order to view its details
+					</Col>
+				</Row>
 			}
 			
 		</Col>

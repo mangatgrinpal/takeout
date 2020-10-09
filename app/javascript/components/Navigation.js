@@ -10,32 +10,28 @@ const Navigation = () => {
 
 
 	return (
-		<Navbar>
+		<Navbar className='position-absolute'>
 			<ul>
 				{
 					location.pathname === '/' ?
-					<div/> :
+					<div/> 
+					:
 					<li>
-					<Link to='/'>
-						go home
-					</Link>
-				</li>
+						<Link className='btn btn-primary' to='/'>
+							go home
+						</Link>
+					</li>
 				}
 				
-				{/*<li>
-					<Link to='/dashboard'>
-						go dashboard
-					</Link>
-				</li>
-				*/}
 				{
 					location.pathname === '/restaurant-list' ?
-					<div/> :
+					<div/> 
+					:
 					<li>
-					<Link to='/restaurant-list'>
-						view restaurants
-					</Link>
-				</li>
+						<Link className='btn btn-primary' to='/restaurant-list'>
+							view restaurants
+						</Link>
+					</li>
 				}
 				
 			</ul>
